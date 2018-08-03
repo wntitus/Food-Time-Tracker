@@ -1,4 +1,13 @@
 
+document.addEventListener("DOMContentLoaded", function(){
+	$('.preloader-background').delay(1700).fadeOut('slow');
+	
+	$('.preloader-wrapper')
+		.delay(1700)
+		.fadeOut();
+});
+
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyA_Trd-05zcJMwzm5Utn20_fMJUrHRrFo4",
@@ -17,5 +26,6 @@ var database = firebase.database();
 
 
 //Firebase will be used to store past selections and user times(if time allows for timer to be added)
+
 
 
