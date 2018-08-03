@@ -28,35 +28,49 @@ document.addEventListener("DOMContentLoaded", function(){
 //Firebase will be used to store past selections and user times(if time allows for timer to be added)
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
-=======
->>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
 //Test pushing objects and sorting
-var places = [
-    {mcdonalds: 15},
-    {habibi: 20},
-    {lazymoon: 35}
-];
+var places = {
+    mcdonalds: 15,
+    habibi: 20,
+    lazymoon: 35
+};
 
-var maps = [
-    {mconalds: 10},
-    {habibi: 7},
-    {lazymoon: 3}
-];
+var maps = {
+    mconalds: 10,
+    habibi: 7,
+    lazymoon: 3
+};
 console.log(places);
 console.log(maps);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> dd35785f50eea03838b04db4fd8160e67c14c3f6
-=======
+//Make an array to hold the restaurant names
+var namesArr = Object.keys(places);
+console.log(namesArr);
 
->>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
-=======
+//Make an array to hold the total time
+var totalTimeArr = [];
+for(i = 0; i < namesArr.length; i++) {
+	console.log(i);
+	var restName = namesArr[i];
+	console.log(restName);
+	var drive = maps.restName;
+	console.log(drive);
+	var eatTime = places.restName;
+	// totalTime = parseInt(places.restName) + parseInt(maps.restName);
+	// totalTimeArr.push(totalTime);
+	// console.log(totalTime);
+}
+console.log(totalTimeArr);
 
->>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
+
+// //logic for adding times at restaurant and drive time
+// //if restaurants are returned in same order
+// for(i=0; i<places.length; i++) {
+// 	if (places[i].name == maps[i]) {
+// 		var totalTime = places[i].aveTimeAt + maps[i].eta}}
+		
+// //alternative if we get restaurants returened in different order
+// for(i=0; i<places.length; i++) {
+// 	//find the index of the restaurant in both arrays
+// 	var j = maps.indexOf(places[i].name);
+// 	var totalTime = maps[j].eta = places[i].aveTimeAt
