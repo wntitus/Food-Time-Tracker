@@ -36,7 +36,7 @@ var places = {
 };
 
 var maps = {
-    mconalds: 10,
+    mcdonalds: 10,
     habibi: 7,
     lazymoon: 3
 };
@@ -53,12 +53,17 @@ for(i = 0; i < namesArr.length; i++) {
 	console.log(i);
 	var restName = namesArr[i];
 	console.log(restName);
-	var drive = maps.restName;
+	console.log(maps);
+	//Store the drive time to a variable
+	var drive = maps[restName];
 	console.log(drive);
-	var eatTime = places.restName;
-	// totalTime = parseInt(places.restName) + parseInt(maps.restName);
-	// totalTimeArr.push(totalTime);
-	// console.log(totalTime);
+	//Store the average time people spend in the restaurant in a variable
+	var eatTime = places[restName];
+	//Add the drive time and time spent in restaurant
+	totalTime = drive + eatTime;
+	//Push the total time into an array so that the index will be aligned with the names array
+	totalTimeArr.push(totalTime);
+	console.log(totalTime);
 }
 console.log(totalTimeArr);
 
