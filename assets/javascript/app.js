@@ -1,4 +1,13 @@
 
+document.addEventListener("DOMContentLoaded", function(){
+	$('.preloader-background').delay(1700).fadeOut('slow');
+	
+	$('.preloader-wrapper')
+		.delay(1700)
+		.fadeOut();
+});
+
+
 // Initialize Firebase
 // var config = {
 //     apiKey: "AIzaSyA_Trd-05zcJMwzm5Utn20_fMJUrHRrFo4",
@@ -33,3 +42,4 @@ var maps = [
 ];
 console.log(places);
 console.log(maps);
+
