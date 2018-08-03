@@ -28,6 +28,13 @@ document.addEventListener("DOMContentLoaded", function(){
 //Firebase will be used to store past selections and user times(if time allows for timer to be added)
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
+=======
+>>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
 //Test pushing objects and sorting
 var places = [
     {mcdonalds: 15},
@@ -42,4 +49,14 @@ var maps = [
 ];
 console.log(places);
 console.log(maps);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+>>>>>>> dd35785f50eea03838b04db4fd8160e67c14c3f6
+=======
+
+>>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
+=======
+
+>>>>>>> a459b1b23bb0f88d23a88a21ed77271afb649f52
