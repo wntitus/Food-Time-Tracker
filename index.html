@@ -1,73 +1,107 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Quick Bite</title>
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />  
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
-        <script src="assets/javascript/app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-      
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quick Bite</title>
 
-    <body>
-      <!-- below some materialize for a loading screen -->
-      <div class="preloader-background">
-        <div class="preloader-wrapper big active">
-          <div class="spinner-layer spinner-red-only">  
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
+  <!-- MATERIALIZE -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />  
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+
+  <!-- JAVASCRIPT --> 
+  <script src="assets/javascript/app.js"></script>
+
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <!-- Page Content goes here -->
+  <div class="container">
+
+
+
+    <!-- NAV BAR -->
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="example.html">example</a></li>
+          <li><a href="example.html">example</a></li>
+          <li><a href="example.html">example</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- a container for the main body aka the map -->
+
+
+    <!-- Map -->
+<!--     <div class="col s12">This div is 12-columns wide on all screen sizes</div>
+ -->    <!-- Card -->
+    <div class="col s12 m7">
+      <!-- <h2 class="header">Horizontal Card</h2> -->
+      <div class="card horizontal">
+        <div class="card-image" id="restaurant_img">
+          <img src="https://images.unsplash.com/photo-1533158020176-a218aed4800b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=70336a87d561a4c6ff133093ea032adc&auto=format&fit=crop&w=802&q=80" style="height:100px;">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <div><h2 id="restaurant-input">Restaurant Name</h2></div>
+            <hr>
+            <div class="row">
+            <div class="col s2" id="distance">Distance</div>
+            <div class="col s2" id="commute_time">Commute Time</div>
+            <div class="col s8 right-align" id="total_time">Total Time</div>
           </div>
+          </div>
+
+          <div class="card-action">
+            <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Lets Go</a>
+          </div>
+          
         </div>
       </div>
-      
-      <!-- nav bar-->
-      <nav>
-          <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Quick Bite</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a href="example.html">example</a></li>
-              <li><a href="example.html">example</a></li>
-              <li><a href="example.html">example</a></li>
-            </ul>
-          </div>
-        </nav>
+    </div>
 
-        <!-- a container for the main body aka the map -->
+
+
+
+
+
 
 
     
-      
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-    </body>
-    <!-- here is the footer -->
 
+
+    <!-- FOOTER -->
     <footer class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-            </div>
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
           </div>
-          <div class="footer-copyright">
-            <div class="container">
-              © 2018 Copyright Text
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            © 2018 Copyright Text
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-              </div>
-            </div>
+          </div>
+        </div>
       </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  </body>
+
   </html>
 
