@@ -43,3 +43,25 @@ var maps = [
 console.log(places);
 console.log(maps);
 
+// ============= MAP ==============
+// Initialize and add the map
+
+var latitude; 
+var longitude; 
+
+function initMap() {
+
+    navigator.geolocation.getCurrentPosition(location) 
+    
+
+    function location(position) {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+    }
+    var centered = {lat:latitude, lng:longitude};
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: centered});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position.});
+
+}
