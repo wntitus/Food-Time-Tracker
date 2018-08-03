@@ -67,6 +67,12 @@ for(i = 0; i < namesArr.length; i++) {
 }
 console.log(totalTimeArr);
 
+//variable that holds the fastest time
+var fastest = Math.min.apply(Math, totalTimeArr);
+console.log(fastest);
+var fastestIndex = totalTimeArr.indexOf(fastest);
+console.log(namesArr[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
+
 
 // //logic for adding times at restaurant and drive time
 // //if restaurants are returned in same order
