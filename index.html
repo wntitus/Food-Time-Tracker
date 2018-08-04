@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 
-<html>
-<head>
+  <html>
+  <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Quick Bite</title>
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 
   <!-- CUSTOM CSS -->
-  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+  <!--<link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />-->
   <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />  
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
@@ -23,52 +23,57 @@
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
+  </head>
 
-<body>
+  <body>
   <!-- NAV BAR -->
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><img src="assets/images/logo-01.svg"></a>
+            <a href="#" class="brand-logo center"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:55px;"> </a>
+
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="#">Records</a></li>
       </ul>
     </div>
   </nav>
 
+ <!-- Map -->
+      <div class ="col s12" id="map_display">
+        <div id="map"></div>
+      </div>
   <!-- Page Content goes here -->
   <div class="container">
 
     <!-- a container for the main body aka the map -->
 
-    <!-- Restaurant Card --> 
-    <div class="col s12">
-      <div class="card horizontal">
-        <div class="card-image" id="restaurant_img">
-          <img src="https://images.unsplash.com/photo-1533158020176-a218aed4800b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=70336a87d561a4c6ff133093ea032adc&auto=format&fit=crop&w=802&q=80" style="height:100px;">
+        <!-- Restaurant Card --> 
+    <div class="card horizontal">
+      <div class="row">
+        <div class="col s12 m4" id="restaurant_img" style="padding:0px;">
+          <img class="responsive-img" src="https://images.unsplash.com/photo-1533208087231-c3618eab623c?ixlib=rb-0.3.5&s=9f7e97013b449400a43f56b9ad266e1e&auto=format&fit=crop&w=1963&q=80" >
         </div>
-        <div class="card-stacked">
-          <div class="card-content">
-            <div><h2 id="restaurant-input">Restaurant Name</h2></div>
-            <hr>
-            <div class="row">
-              <div class="col s12 m2" id="distance">Distance</div>
-              <div class="col s12 m2" id="commute_time">Commute Time</div>
-              <div class="col s12 m8 right-align" id="total_time">Total Time</div>
+        <div class="col s12 m8">
+          <div class="row">
+            <div class="card-content">
+              <div><h5 id="restaurant-input">Restaurant Name</h5></div>
+              <hr>
+              <div class="col s12 m2 center-align" id="distance">Distance</div>
+              <div class="col s12 m2 center-align" id="commute_time">Commute Time</div>
+              <div class="col s12 m4 center-align" id="total_time">Total Time</div>
+              <div class="col s12 m4 right-align"><a class="waves-effect waves-light btn">Lets Go</a></div>
             </div>
-            <a class="waves-effect waves-light btn">Lets Go</a>
           </div>
         </div>
       </div>
     </div>
 
+
+
+
     <!-- Selected Restaurant --> 
     <div class="col s12">
 
-      <!-- Map -->
-      <div class ="col s12" id="map_display">
-        <div id="map"></div>
-      </div>
+     
 
       <div class ="col s12">
       <div><h2 id="restaurant-input">Restaurant Name</h2></div>
@@ -90,7 +95,7 @@
 
 
   </div>
-  
+
   <!-- Sticky Footer Push -->
   <main></main>
 
@@ -114,7 +119,7 @@
 
 
 
-</body>
+  </body>
 
-</html>
+  </html>
 
