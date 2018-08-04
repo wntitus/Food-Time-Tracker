@@ -54,6 +54,18 @@ nav {
 }
 
 /* ======= TYPOGRAPHY ======== */
+h5 {
+    font-size: 1.64rem;
+    line-height: 1rem;
+    margin: 1.0933333333rem 0 .656rem 0;
+}
+
+h6 {
+    font-size: 1rem;
+    line-height: .75rem;
+    margin: .7666666667rem 0 .46rem 0;
+}
+
 
 /* ======= MAP ======== */
 #map {
