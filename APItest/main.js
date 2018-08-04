@@ -7,7 +7,7 @@ $(document).ready(function() {
         let longitude = position.coords.longitude;
 
         const proxy = "https://cors-anywhere.herokuapp.com/"; 
-        const url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location="+latitude+","+longitude+"&rankby=distance&keyword=burger&opennow";
+        const url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location="+latitude+","+longitude+"&rankby=distance&keyword=opennow";
 
 
         $.ajax({

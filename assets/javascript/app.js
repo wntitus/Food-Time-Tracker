@@ -31,14 +31,22 @@ document.addEventListener("DOMContentLoaded", function(){
 //Test pushing objects and sorting
 var places = {
     mcdonalds: 15,
-    habibi: 20,
-    lazymoon: 35
+	habibi: 20,
+	chipotle: 15,
+	lazymoon: 35,
+	elcerro: 35,
+	burgerfi: 15,
+	tijuanaflats: 20 
 };
 
 var maps = {
     mcdonalds: 10,
     habibi: 7,
-    lazymoon: 3
+	lazymoon: 3,
+	tijuanaflats: 4,
+	burgerfi: 8,
+	elcerro: 3,
+	chipotle: 4
 };
 console.log(places);
 console.log(maps);
@@ -67,21 +75,26 @@ for(i = 0; i < namesArr.length; i++) {
 }
 console.log(totalTimeArr);
 
-//variable that holds the fastest time
-var fastest = Math.min.apply(Math, totalTimeArr);
-console.log(fastest);
-var fastestIndex = totalTimeArr.indexOf(fastest);
-console.log(namesArr[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
+var topFive = [];
 
-
-// //logic for adding times at restaurant and drive time
-// //if restaurants are returned in same order
-// for(i=0; i<places.length; i++) {
-// 	if (places[i].name == maps[i]) {
-// 		var totalTime = places[i].aveTimeAt + maps[i].eta}}
-		
-// //alternative if we get restaurants returened in different order
-// for(i=0; i<places.length; i++) {
-// 	//find the index of the restaurant in both arrays
-// 	var j = maps.indexOf(places[i].name);
-// 	var totalTime = maps[j].eta = places[i].aveTimeAt
+//Find the fastest time and store it in an array with the restaurant name next to it.
+//We want to do this 5 times and after each time remove the fastest
+for (j = 0; j < 5; j++) {
+	//Find the fastest restaurant time
+	var fastest = Math.min.apply(Math, totalTimeArr);
+	console.log(fastest);
+	//Use the index of the fastest time to find which restaurant it is
+	var fastestIndex = totalTimeArr.indexOf(fastest);
+	console.log(namesArr[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
+	//Push the restaurant and total time to top five array
+	topFive.push(namesArr[fastestIndex]);
+	topFive.push(totalTimeArr[fastestIndex]);
+	console.log(topFive);
+	//Remove the fastest restaurant so it doesn't show up again
+	namesArr.splice(fastestIndex, 1);
+	totalTimeArr.splice(fastestIndex, 1);
+	console.log(namesArr);
+	console.log(totalTimeArr);
+}
+//Find and store the 5 fastest restaurants to an array
+//Find the fastest time 
