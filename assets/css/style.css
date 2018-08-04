@@ -18,6 +18,12 @@ nav {
     line-height: 56px;
 }
 
+.page-footer {
+    padding-top: 20px;
+    color: #fff;
+    background-color: #555;
+}
+
 .preloader-background {
 	display: flex;
 	align-items: center;
