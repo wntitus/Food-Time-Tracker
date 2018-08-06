@@ -170,7 +170,7 @@ for (j = 0; j < 5; j++) {
 	var goDiv = $("<div>");
 	goDiv.addClass("col s12 m2 right-align");
 	var goImage = $("<a>");
-	goImage.addClass("waves-effect waves-light btn");
+	goImage.addClass("waves-effect waves-light btn go");
 	goImage.text("Lets Go");
 	goDiv.append(goImage);
 
