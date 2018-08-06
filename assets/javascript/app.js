@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function(){
 // firebase.initializeApp(config);
 
 // //Database to refrence firebase
-// var database = firebase.database();
+// var database = firebase.databa4se();
 
 //Variables to find fastest restaurant
-
+var latlong;
 
 //Firebase will be used to store past selections and user times(if time allows for timer to be added)
 
@@ -76,7 +76,7 @@ for(i = 0; i < namesArr.length; i++) {
 console.log(totalTimeArr);
 
 var topFive = [];
-
+$(document).ready(function() {
 //Find the fastest time and store it in an array with the restaurant name next to it.
 //We want to do this 5 times and after each time remove the fastest
 for (j = 0; j < 5; j++) {
@@ -90,12 +90,123 @@ for (j = 0; j < 5; j++) {
 	topFive.push(namesArr[fastestIndex]);
 	topFive.push(totalTimeArr[fastestIndex]);
 	console.log(topFive);
+	
+
+	//Populate the website with the fastest restaurants
+	//Makes a card with the restaurant info
+	var newCard = $("<div>");
+	newCard.addClass("card horizontal");
+
+	//A single row that contains all of card information (The one row to rule them all)
+	var rowAll = $("<div>");
+	rowAll.addClass("row");
+
+	//Restaurant image
+	var rowPic = $("<div>");
+	var picDiv = $("<div>");
+	picDiv.addClass("col s12 m4");
+	picDiv.attr("id", "restaurant_img");
+	picDiv.attr("sytle", "padding:0px;");
+	picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+	
+	//Append picture to the card
+	picDiv.append(picDiv);
+
+	//Column of inputs (Restaurant name, cusine, times, etc...)
+	var rightCol = $("<div>");
+	rightCol.addClass("col s12 m8 rightCol");
+
+	//Row with Restaurant name and favorite icon
+	var rowOne = $("<div>");
+	rowOne.addClass("row");
+	//Restaurant Name
+	var nameDiv = $("<div>");
+	nameDiv.addClass("col s7 m8");
+	nameDiv.html("<h5 id='restaurant-input'>Restaurant Name:<br>" + namesArr[fastestIndex] + "</h5>");
+	//Favorite icon
+	var favDiv = $("<div>");
+	favDiv.addClass("col s6 m4 right-align");
+	favDiv.attr("id", "favorite");
+	var heart = $("<i>");
+	heart.addClass("small material-icons");
+	heart.text("favorite_border");
+
+	favDiv.append(heart);
+	//Append the name and heart icon to the row
+	rowOne.append(nameDiv);
+	rowOne.append(favDiv);
+	rowOne.append(heart);
+
+	//Row that has food type and address
+	var rowTwo = $("<div>");
+	rowTwo.addClass("row");
+	var typeDiv = $("<div>");
+	typeDiv.addClass("col s12");
+	typeDiv.html("<h6>Type of Food: </h6>");
+	var addressDiv = $("<div>");
+	addressDiv.addClass("col s12");
+	addressDiv.html("<h6>Address: </h6><hr>");
+
+	//Append food type and address to the row
+	rowTwo.append(typeDiv);
+	rowTwo.append(addressDiv);
+	
+
+	//Row with distance, commute time, total time, and link to directions
+	var rowThree = $("<div>");
+	rowThree.attr("class", "row");
+	//Distance to restaurant
+	var distDiv = $("<div>");
+	distDiv.addClass("col s12 m2 center-align");
+	distDiv.attr("id", "distance")
+	distDiv.text("Distance: ");
+	//Commute time to restaurant
+	var commuteDiv = $("<div>");
+	commuteDiv.addClass("col s12 m2 center-align");
+	commuteDiv.attr("id", "commute_time");
+	commuteDiv.text("Commute Time: " + maps[namesArr[fastestIndex]]);
+	//Total time to and in restaurant
+	var totalDiv = $("<div>");
+	totalDiv.addClass("col s12 m2 center-align");
+	totalDiv.attr("id", "total_time");
+	totalDiv.text("Total Time: " + totalTimeArr[fastestIndex]);
+	//'Lets Go' button
+	var goDiv = $("<div>");
+	goDiv.addClass("col s12 m2 right-align");
+	var goImage = $("<a>");
+	goImage.addClass("waves-effect waves-light btn");
+	goImage.text("Lets Go");
+	goDiv.append(goImage);
+
+	//Append distance, commute time, total est time, and directions button to the thrird row
+	rowThree.append(distDiv);
+	rowThree.append(commuteDiv);
+	rowThree.append(totalDiv);
+	rowThree.append(goDiv);
+
+
+	//Append all of the Restaurant inputs to a column 
+	rightCol.append(rowOne);
+	rightCol.append(rowTwo);
+	rightCol.append(rowThree);
+
+	//Appending image and input column together to card
+	rowAll.append(picDiv);
+	rowAll.append(rightCol);
+
+	//Attach the master row to the card
+	newCard.append(rowAll);
+	
+	$("#cards").append(newCard);
+
 	//Remove the fastest restaurant so it doesn't show up again
 	namesArr.splice(fastestIndex, 1);
 	totalTimeArr.splice(fastestIndex, 1);
 	console.log(namesArr);
 	console.log(totalTimeArr);
+
 }
+
 //Find and store the 5 fastest restaurants to an array
 //Find the fastest time 
 
@@ -170,3 +281,29 @@ var ss=document.getElementsByClassName('stopwatch');
 	}
 	
 });
+
+
+//Function to find location and display map of the local area
+// function getLocation() {
+// 	navigator.geolocation.getCurrentPosition(showPosition);
+// }
+// function showPosition(position) {
+// 	latlong = position.coords.latitude + "," + position.coords.longitude;
+
+// 	var url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latlong + "&zoom=14&size=400x300&sensor=false&key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8";
+
+// 	$("#map").html("<img src='" + url + "'>");
+// 	$("#map").prepend(url);
+// 	// alert(latlong);
+// }
+// getLocation();
+
+
+
+//User can add a restaurant to their favorites list
+// $(document).on("click", "#favorite", function() {
+// 	alert("Click works");
+})
+
+
+
