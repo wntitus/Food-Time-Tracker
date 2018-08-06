@@ -182,15 +182,6 @@ for (j = 0; j < 5; j++) {
 	totalDiv.attr("id", "total_time");
 	totalDiv.text("Total Time: " + totalTimeArr[fastestIndex]);
 
-	//'Lets Go' button
-	var goDiv = $("<div>");
-	goDiv.addClass("col s12 m2 right-align");
-	var goImage = $("<a>");
-	goImage.addClass("waves-effect waves-light btn go");
-	goImage.text("Lets Go");
-	goDiv.append(goImage);
-
-
 	//Append distance, commute time, total est time, and directions button to the thrird row
 	rowThree.append(distDiv);
 	rowThree.append(commuteDiv);
