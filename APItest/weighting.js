@@ -17,6 +17,8 @@ function weighter(){
         }).then(function(response) {
             let namesArray = [];
             let typesArray = [];
+            let typeCountArray = [];
+            let typeCount = 0;
             for (i = 0; i < 20; i++){
                 let output = response.results[i];
                 if (!namesArray.includes(output.name)){
@@ -24,16 +26,13 @@ function weighter(){
                     for (i = 0; i < output.types.length; i++){
                         if (!typesArray.includes(output.types[i])){
                             typesArray.push(output.types[i]);
+                            typeCount = 0;
                         } else {
-                            let typeIndex = typesArray.indexOf(output.types[i]);
-                            typesArray[typeIndex] = output.types[i]
+
                         }
 
                     }
-
                 }
-                console.log(namesArray);
-                console.log(typesArray);
                 let placeID = output.place_id;
                 let detailsURL = "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&placeid=" + placeID + "&fields=rating,review";
 
@@ -44,13 +43,19 @@ function weighter(){
                 console.log(response);
             })
             }
+
             console.log(response);
+            console.log(namesArray);
+            console.log(typesArray);
+
         })
 
 
 
 
+
     }
+
 
 
 
