@@ -17,7 +17,7 @@ function weighter(){
         }).then(function(response) {
             let namesArray = [];
             let typesArray = [];
-            let typeCountArray = [];
+            let junk = [];
             let typeCount = 0;
             for (i = 0; i < 20; i++){
                 let output = response.results[i];
@@ -39,12 +39,19 @@ function weighter(){
             }
             typesArray.sort();
             for (i = 0; i < typesArray.length; i++) {
-                if (typesArray[i] === "point_of_interest") {
-                    let index = typesArray.indexOf(typesArray[i]);
-                    typesArray.splice(index, 1);
+                let currentElem = typesArray[i];
+                let index = typesArray.indexOf(currentElem);
+                console.log(typeof currentElem);
+                if (currentElem === "point_of_interest") {
+                    typesArray.splice(index);
+                    junk.push(currentElem);
+                } else if (currentElem === "establishment") {
+                    typesArray.splice(index);
+                    junk.push(currentElem);
                 }
             }
-
+            console.log(typesArray.length)
+            console.log(junk);
             console.log(response);
             console.log(namesArray);
             console.log(typesArray);
