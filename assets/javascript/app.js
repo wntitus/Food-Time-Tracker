@@ -110,7 +110,11 @@ for (j = 0; j < 5; j++) {
 	picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
 	
 	//Append picture to the card
-	rowPic.append(picDiv);
+	picDiv.append(picDiv);
+
+	//Column of inputs (Restaurant name, cusine, times, etc...)
+	var rightCol = $("<div>");
+	rightCol.addClass("col s12 m8 rightCol");
 
 	//Row with Restaurant name and favorite icon
 	var rowOne = $("<div>");
@@ -180,11 +184,15 @@ for (j = 0; j < 5; j++) {
 	rowThree.append(totalDiv);
 	rowThree.append(goDiv);
 
-	//Append all of the rows to the master row that holds everything
-	rowAll.append(rowPic);	
-	rowAll.append(rowOne);
-	rowAll.append(rowTwo);
-	rowAll.append(rowThree);
+
+	//Append all of the Restaurant inputs to a column 
+	rightCol.append(rowOne);
+	rightCol.append(rowTwo);
+	rightCol.append(rowThree);
+
+	//Appending image and input column together to card
+	rowAll.append(picDiv);
+	rowAll.append(rightCol);
 
 	//Attach the master row to the card
 	newCard.append(rowAll);
@@ -197,7 +205,7 @@ for (j = 0; j < 5; j++) {
 	console.log(namesArr);
 	console.log(totalTimeArr);
 
-};
+}
 
 //Function to find location and display map of the local area
 // function getLocation() {
@@ -220,3 +228,5 @@ for (j = 0; j < 5; j++) {
 // $(document).on("click", "#favorite", function() {
 // 	alert("Click works");
 })
+
+

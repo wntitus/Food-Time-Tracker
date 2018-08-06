@@ -80,6 +80,24 @@ nav {
     padding: 0 32px;
 }
 
+.rightCol{
+	padding: 10px;
+}
+.row .col {
+    padding: 0 0 0.75rem 0.80rem;
+}
+
+/* ======= IMAGE EDTTS ======= */ 
+
+
+.row .col.m4 {
+    margin-left: auto;
+    left: auto;
+    right: auto;
+    padding: 0px;
+    margin-bottom: -5px;
+}
+
 /* ======= TYPOGRAPHY ======== */
 h5 {
     font-size: 1.64rem;
