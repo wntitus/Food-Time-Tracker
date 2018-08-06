@@ -165,8 +165,13 @@ var ss=document.getElementsByClassName('stopwatch');
 	var lap= document.getElementById('lap');
 	var laps=document.getElementById('laps');
 	
+	foodarray=["Arrived!","Ordered Food!","Order Picked Up!","Starting Meal!","Finished Meal","On Route!","Arrived!"]
 	lap.onclick=function(){
 		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+
+		if ("On Route"=== true) {
+			innerHTML="Arrived!"
+		}
 	}
 	
 });
