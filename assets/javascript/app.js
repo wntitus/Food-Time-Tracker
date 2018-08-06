@@ -1,3 +1,5 @@
+
+// loads the geolocation method for the userLocation callback function
 navigator.geolocation.getCurrentPosition(userLocation) 
 
 
@@ -11,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-
+//nesting everything inside userLocation function so we can utilize the lat and long of the user
 function userLocation(position) {
-//Variables to find fastest restaurant
+// setting current lat and long to user position
 let latitude = position.coords.latitude;
 let longitude = position.coords.longitude;
-
+//setting our cors proxy and our places API url that uses the user lat and long 
 const proxy = "https://cors-anywhere.herokuapp.com/"; 
 const placeURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location=" + latitude + "," + longitude + "&radius=8000&keyword=quick,food,takeaway";
 
