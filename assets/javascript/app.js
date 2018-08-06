@@ -111,13 +111,19 @@ var ss=document.getElementsByClassName('stopwatch');
 	var currentTimer=0;
 		interval=0;
 		lastupdatetime=new Date().getTime(),
-		start= $.querySelector('button.start');
-		stop= $.querySelector('button.stop');
-		mins= $.querySelector('span.minutes');
-		secs=$.querySelector('span.seconds');
-		cents=$.querySelector('span.centiseconds');
+		start= s.querySelector('button.start');
+		stop= s.querySelector('button.stop');
+		reset= s.querySelector('button.reset');
+		save= s.querySelector('button.save')
+		mins= s.querySelector('span.minutes');
+		secs=s.querySelector('span.seconds');
+		cents=s.querySelector('span.centiseconds');
 
-	
+	start.addEventListener('click',startTimer);
+	stop.addEventListener('click',stopTimer);
+	reset.addEventListener('click',resetTimer);
+
+
 	function pad (n){
 		return('00' + n).substr(-2);
 	}
@@ -125,12 +131,42 @@ var ss=document.getElementsByClassName('stopwatch');
 	function update(){
 		var now = new Date().getTime(),
 			dt= now - lastupdatetime;
+
 		currentTimer += dt;
 
 		var time = new Date(currentTimer);
-		min.innerHTML=pad(time.getMinutes)
 
+		mins.innerHTML=pad(time.getMinutes());
+		secs.innerHTML=pad(time.getSeconds());
+		cents.innerHTML=pad(Math.floor(time.getMilliseconds()/ 10));
 
 		lastupdatetime=now;
 	}
+	// functions that start and stop timer
+	function startTimer () {
+		if (!interval) {
+			lastupdatetime= new Date().getTime();
+			interval=setInterval(update,1);
+		}
+		
+	};
+	function stopTimer(){
+		clearInterval(interval);
+		interval=0;
+
+	}
+	function resetTimer(){
+		stopTimer();
+
+		currentTimer=0;
+
+		mins.innerHTML=secs.innerHTML=cents.innerHTML=pad(0);
+	}
+	var lap= document.getElementById('lap');
+	var laps=document.getElementById('laps');
+	
+	lap.onclick=function(){
+		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+	}
+	
 });

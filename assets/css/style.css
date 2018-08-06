@@ -113,9 +113,7 @@ h6 {
 
 .stopwatch{
 	width: 300px;
-	background-color: #ffce47;
 	border-radius: 5px;
-	box-shadow: 0 4px rgba(0, 0, 0, 0.75) 0 0 1px rgba(0, 0, 0, 0.15);
 	padding: 15px;
 	}
 
@@ -156,13 +154,44 @@ h6 {
 		margin-top:4px;
 		box-shadow: none;
 	}
+	.reset{
+		background-color: #FCA743
+	}
+	.reset:hover{
+		background-color:  #fdb864
+	}
+	.reset:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+	#lap{
+		background-color: #ffce47
+	}
+	#lap:hover{
+		background-color: #ffd362
+	}
+	#lap:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+	#laps{
+		font-size: 25px;
+		font-family: sans-serif;
+		text-align: center;
+		margin-top: 10px;
+	}
 	.display{
 	font-size: 50px;
 	font-family: sans-serif;
 	text-align: center;
 	margin-top: 10px;
 	}
-	:not(:last-child):after{
+	.minutes:not(:last-child):after{
+		content: ':';
+	}
+	.seconds:not(:last-child):after{
 		content: ':';
 	}
 /* timer style */

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-  <script src="assets/javascript/app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 </head>
 <!-- here are the classes for the timer -->
@@ -16,11 +16,14 @@
     <div class="controls">
       <button class="start">Start</button>
       <button class="stop">Stop</button>
+      <button class="reset">Reset</button>
+      <button id="lap">On Route!</button>
     </div>
     <div class="display">
       <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
     </div>
+    <ul id="laps"></ul>
   </div>
-
+  <script src="assets/javascript/app.js"></script>
 </body>
 </html>
