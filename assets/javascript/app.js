@@ -92,6 +92,7 @@ for (j = 0; j < 5; j++) {
 	console.log(topFive);
 	
 
+// ========= Dynamic Restaurant Generation =========== //
 	//Populate the website with the fastest restaurants
 	//Makes a card with the restaurant info
 	var newCard = $("<div>");
@@ -121,11 +122,11 @@ for (j = 0; j < 5; j++) {
 	rowOne.addClass("row");
 	//Restaurant Name
 	var nameDiv = $("<div>");
-	nameDiv.addClass("col s7 m8");
-	nameDiv.html("<h5 id='restaurant-input'>Restaurant Name:<br>" + namesArr[fastestIndex] + "</h5>");
+	nameDiv.addClass("col s8 m8");
+	nameDiv.html("<h5 id='restaurant-input'>" + namesArr[fastestIndex] + "</h5>");
 	//Favorite icon
 	var favDiv = $("<div>");
-	favDiv.addClass("col s6 m4 right-align");
+	favDiv.addClass("col s2 m2 right-align");
 	favDiv.attr("id", "favorite");
 	var heart = $("<i>");
 	heart.addClass("small material-icons");
@@ -135,7 +136,14 @@ for (j = 0; j < 5; j++) {
 	//Append the name and heart icon to the row
 	rowOne.append(nameDiv);
 	rowOne.append(favDiv);
-	rowOne.append(heart);
+
+	//'Lets Go' button
+	var goDiv = $("<div>");
+	goDiv.addClass("col s3 m3 right-align");
+	var goImage = $("<a>");
+	goImage.addClass("waves-effect waves-light btn");
+	goImage.text("Go");
+	rowOne.append(goImage);
 
 	//Row that has food type and address
 	var rowTwo = $("<div>");
@@ -147,6 +155,7 @@ for (j = 0; j < 5; j++) {
 	addressDiv.addClass("col s12");
 	addressDiv.html("<h6>Address: </h6><hr>");
 
+
 	//Append food type and address to the row
 	rowTwo.append(typeDiv);
 	rowTwo.append(addressDiv);
@@ -157,26 +166,20 @@ for (j = 0; j < 5; j++) {
 	rowThree.attr("class", "row");
 	//Distance to restaurant
 	var distDiv = $("<div>");
-	distDiv.addClass("col s12 m2 center-align");
+	distDiv.addClass("col s4 m2 center-align");
 	distDiv.attr("id", "distance")
 	distDiv.text("Distance: ");
 	//Commute time to restaurant
 	var commuteDiv = $("<div>");
-	commuteDiv.addClass("col s12 m2 center-align");
+	commuteDiv.addClass("col s4 m2 center-align");
 	commuteDiv.attr("id", "commute_time");
 	commuteDiv.text("Commute Time: " + maps[namesArr[fastestIndex]]);
 	//Total time to and in restaurant
 	var totalDiv = $("<div>");
-	totalDiv.addClass("col s12 m2 center-align");
+	totalDiv.addClass("col s4 m2 center-align");
 	totalDiv.attr("id", "total_time");
 	totalDiv.text("Total Time: " + totalTimeArr[fastestIndex]);
-	//'Lets Go' button
-	var goDiv = $("<div>");
-	goDiv.addClass("col s12 m2 right-align");
-	var goImage = $("<a>");
-	goImage.addClass("waves-effect waves-light btn");
-	goImage.text("Lets Go");
-	goDiv.append(goImage);
+	
 
 	//Append distance, commute time, total est time, and directions button to the thrird row
 	rowThree.append(distDiv);
@@ -210,10 +213,22 @@ for (j = 0; j < 5; j++) {
 //Find and store the 5 fastest restaurants to an array
 //Find the fastest time 
 
+// ========= Favorite Heart Click ==========
+ $("#favorite").click(function () {
+	$("#favorite").html('<i class="small material-icons">favorite</i>');
+
+	//Add a function here to append the whole card to the favorites page. Whooooohooo
+	
+
+    })
 
 
 
-// logic for timer ----->
+
+// ========= End Favorite Heart Click 
+
+
+// ========= Logic for Timer =========== //
 
 // class var for stopwatch
 var ss=document.getElementsByClassName('stopwatch');
