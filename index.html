@@ -32,13 +32,33 @@
   <!-- NAV BAR -->
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:55px;"> </a>
+      <!-- DESK NAV -->
+      <a href="index.html" class="brand-logo center"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:55px;"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">Records</a></li>
-        <li><a href="#">Favorite</a></li>
+        <li><a href="records.html">Records</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
       </ul>
+
+
+      <!-- MOBILE NAV -->
+      <ul id="slide-out" class="sidenav">
+        <li><div class="user-view">
+          <a href="index.html"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:55px;"></a>
+        </div></li>
+        <li><a href="records.html">Records</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+      </ul>
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+
     </div>
   </nav>
+
+
+
+
+
 
   <!-- Map -->
   <div class ="col s12" id="map_display">
@@ -58,7 +78,7 @@
         <div class="col s12 m8">
           <div class="card-content">
 
-          <div class="row">
+            <div class="row">
               <div class="row">
                 <div class= "col s7 m8"><h5 id="restaurant-input">Restaurant Name</h5></div>
                 <!-- .favorite is the class for the favorite button --> 
@@ -114,29 +134,46 @@
 
   <!-- Sticky Footer Push -->
 <!--   <main></main>
- -->
+-->
 
-  <!-- FOOTER -->
-  <footer class="page-footer">
-      <div class="row">
-        <div class="copyright col s12 center-align hide-on-med-and-down">©Food Rangers</div>
-      </div>
-  </footer>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<!-- FOOTER -->
+<footer class="page-footer">
+  <div class="row">
+    <div class="copyright col s12 center-align hide-on-med-and-down">©Food Rangers</div>
+  </div>
+</footer>
 
 
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&callback=initMap">
-  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
-  <script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&callback=initMap">
+</script>
+
+<script>
     // $(".favorite").html("<i class="small material-icons">favorite_border</i>")
     $(".favorite").click(function(){
       alert("thanks for clicking");
       $(".favorite").html('<i class="small material-icons">favorite_border</i>');
     });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, options);
+    });
+
+  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+  // var collapsibleElem = document.querySelector('.collapsible');
+  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+
 
   </script>
 
