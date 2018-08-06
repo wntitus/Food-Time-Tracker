@@ -135,7 +135,7 @@ for (j = 0; j < 5; j++) {
 
 	//Row that has food type and address
 	var rowTwo = $("<div>");
-	rowTwo.addClass("row");
+	// rowTwo.addClass("row");
 	var typeDiv = $("<div>");
 	typeDiv.addClass("col s12");
 	typeDiv.html("<h6>Type of Food: </h6>");
@@ -149,8 +149,8 @@ for (j = 0; j < 5; j++) {
 	
 
 	//Row with distance, commute time, total time, and link to directions
-	var rowThree = ("<div>");
-	rowThree.addClass("row");
+	var rowThree = $("<div>");
+	rowThree.attr("class", "row");
 	//Distance to restaurant
 	var distDiv = $("<div>");
 	distDiv.addClass("col s12 m2 center-align");
@@ -175,14 +175,15 @@ for (j = 0; j < 5; j++) {
 	goDiv.append(goImage);
 
 	//Append distance, commute time, total est time, and directions button to the thrird row
-	thirdRow.append(distDiv);
-	thirdRow.append(commuteDiv);
-	thirdRow.append(totalDiv);
-	thirdRow.append(goDiv);
+	rowThree.append(distDiv);
+	rowThree.append(commuteDiv);
+	rowThree.append(totalDiv);
+	rowThree.append(goDiv);
 
 	//Append all of the rows to the master row that holds everything	
 	rowAll.append(rowOne);
 	rowAll.append(rowTwo);
+	rowAll.append(rowThree);
 	// rowAll.append(thirdRow);
 	// newCard.append(rowPic, picDiv);
 	// newCard.append(rowOne, nameDiv, favDiv, heart, rowTwo, typeDiv, addressDiv); 
