@@ -5,6 +5,8 @@ function weighter(){
     let typesArray = [];
     let junk = [];
     let idArray = [];
+    let detailsResponse = [];
+    let nameRatings = [];
 
     function location(position) {
         let itemWeight = 0;
@@ -32,7 +34,7 @@ function weighter(){
                     for (o = 0; o < typesArray.length; o++) {
                         let currentElem = typesArray[o];
                         let index = typesArray.indexOf(currentElem);
-                        if (currentElem === "point_of_interest" || currentElem === "establishment") {
+                        if (currentElem === "point_of_interest" || currentElem === "establishment" || currentElem === "store") {
                             typesArray.splice(index, 1);
                             junk.push(currentElem);
                         } 
@@ -40,12 +42,16 @@ function weighter(){
                 }
                 for (k = 0; k < idArray.length; k++) {
                     let placeID = idArray[k];
-                    let detailsURL = "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&placeid=" + placeID + "&fields=rating,review";
+                    let detailsURL = "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&placeid=" + placeID + "&fields=name,rating,review";
                     $.ajax({
                         url : proxy + detailsURL,
                         method : "GET"
                     }).done(function(response) {
-                        console.log(response);
+                        detailsResponse.push(response);
+                        for (q = 0; q < detailsResponse.length; q++) {
+                            let item = detailsResponse[q];
+                            nameRatings.push(item.result.name + " " + item.result.rating);
+                        }
                     })
                     }
             console.log(junk);
@@ -53,6 +59,8 @@ function weighter(){
             console.log(namesArray);
             console.log(idArray);
             console.log(typesArray);
+            console.log(detailsResponse);
+            console.log(nameRatings);
         })
 
 
