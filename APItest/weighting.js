@@ -24,13 +24,7 @@ function weighter(){
                 if (!namesArray.includes(output.name)){
                     namesArray.push(output.name);
                     for (i = 0; i < output.types.length; i++){
-                        if (!typesArray.includes(output.types[i])){
-                            typesArray.push(output.types[i]);
-                            typeCount = 0;
-                        } else {
-
-                        }
-
+                        typesArray.push(output.types[i]);
                     }
                 }
                 let placeID = output.place_id;
@@ -43,11 +37,17 @@ function weighter(){
                 console.log(response);
             })
             }
+            typesArray.sort();
+            for (i = 0; i < typesArray.length; i++) {
+                if (typesArray[i] === "point_of_interest") {
+                    let index = typesArray.indexOf(typesArray[i]);
+                    typesArray.splice(index, 1);
+                }
+            }
 
             console.log(response);
             console.log(namesArray);
             console.log(typesArray);
-
         })
 
 
