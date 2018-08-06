@@ -2,10 +2,4 @@ $(document).ready(function() {
     
     weighter();
 
-    
 })
-
-
-
-
-

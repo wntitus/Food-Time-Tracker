@@ -17,16 +17,13 @@
   <!--<link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />-->
   <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />  
 
-  <!-- FIREBASE -->
-  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-
-  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 
   <!-- JAVASCRIPT --> 
   <script src="assets/javascript/app.js"></script>
 
- 
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -61,7 +58,7 @@
   </div>
   <!-- Page Content goes here -->
   <div class="container">
-    <div id="cards">
+
     <!-- a container for the main body aka the map -->
 
     <!-- Restaurant Card --> 
@@ -73,13 +70,12 @@
         <div class="col s12 m8">
           <div class="card-content">
 
-
-          <div class="row" id="restaurantInfo">
+            <div class="row">
               <div class="row">
                 <div class= "col s7 m8"><h5 id="restaurant-input">Restaurant Name</h5></div>
                 <!-- .favorite is the class for the favorite button --> 
-
-                <div class= "col s6 m4 right-align" id="favorite"><i class="small material-icons">favorite_border</i> </div>
+                <div class= "col s1 m2 right-align favorite"><i class="small material-icons">favorite_border</i></div>
+                <div class="col s4 m2 right-align"><a class="waves-effect waves-light btn">Bite</a></div>
 
               </div>
               <div class ="row">
@@ -88,22 +84,24 @@
               </div>
               <hr>
               <div class="row">
-
-                <div class="col s12 m2 center-align" id="distance">Distance </div>
-                <div class="col s12 m2 center-align" id="commute_time">Commute Time</div>
-                <div class="col s12 m4 center-align" id="total_time">Total Time</div>
-                <div class="col s12 m4 right-align"><a class="waves-effect waves-light btn">Lets Go</a></div>
-
+                <div class="col s4 m4 center-align"><div class="info_input" id="distance">5.5 mi</div><div class="descript">Distance</div></div>
+                <div class="col s4 m4 center-align"><div class="info_input" id="commute_time">20 min</div><div class="descript">Commute Time</div></div>
+                <div class="col s4 m4 center-align"><div class="info_input" id="total_time">30 min</div><div class="descript">Total Time</div></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
+
+
+
+
 
     <!-- Selected Restaurant --> 
     <div class="col s12">
+
+
 
       <div class ="col s12">
         <div><h2 id="restaurant-input">Restaurant Name</h2></div>
@@ -123,6 +121,15 @@
       <div class"col sm12 center-align" id="timer">00:00:00</div>
     </div>
 
+ <div class="stopwatch">
+    <div class="controls">
+      <button class="start">Start</button>
+      <button class="stop">Stop</button>
+    </div>
+    <div class="display">
+      <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
+    </div>
+  </div>
 
   </div>
 
@@ -141,18 +148,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
 
-
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&callback=initMap">
 </script>
 
-
 <script>
     // $(".favorite").html("<i class="small material-icons">favorite_border</i>")
-    // $(".favorite").click(function(){
-    //   alert("thanks for clicking");
-    //   $(".favorite").html('<i class="small material-icons">favorite_border</i>');
-    // });
+    $(".favorite").click(function(){
+      alert("thanks for clicking");
+      $(".favorite").html('<i class="small material-icons">favorite_border</i>');
+    });
 
 
     document.addEventListener('DOMContentLoaded', function() {
