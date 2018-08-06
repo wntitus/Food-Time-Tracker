@@ -110,7 +110,11 @@ for (j = 0; j < 5; j++) {
 	picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
 	
 	//Append picture to the card
-	rowPic.append(picDiv);
+	picDiv.append(picDiv);
+
+	//Column of inputs (Restaurant name, cusine, times, etc...)
+	var rightCol = $("<div>");
+	rightCol.addClass("col s12 m8 rightCol");
 
 	//Row with Restaurant name and favorite icon
 	var rowOne = $("<div>");
@@ -180,11 +184,15 @@ for (j = 0; j < 5; j++) {
 	rowThree.append(totalDiv);
 	rowThree.append(goDiv);
 
-	//Append all of the rows to the master row that holds everything
-	rowAll.append(rowPic);	
-	rowAll.append(rowOne);
-	rowAll.append(rowTwo);
-	rowAll.append(rowThree);
+
+	//Append all of the Restaurant inputs to a column 
+	rightCol.append(rowOne);
+	rightCol.append(rowTwo);
+	rightCol.append(rowThree);
+
+	//Appending image and input column together to card
+	rowAll.append(picDiv);
+	rowAll.append(rightCol);
 
 	//Attach the master row to the card
 	newCard.append(rowAll);
@@ -197,7 +205,83 @@ for (j = 0; j < 5; j++) {
 	console.log(namesArr);
 	console.log(totalTimeArr);
 
-};
+}
+
+//Find and store the 5 fastest restaurants to an array
+//Find the fastest time 
+
+
+
+
+// logic for timer ----->
+
+// class var for stopwatch
+var ss=document.getElementsByClassName('stopwatch');
+// function for when variables are called
+[].forEach.call(ss, function (s){
+	var currentTimer=0;
+		interval=0;
+		lastupdatetime=new Date().getTime(),
+		start= s.querySelector('button.start');
+		stop= s.querySelector('button.stop');
+		reset= s.querySelector('button.reset');
+		save= s.querySelector('button.save')
+		mins= s.querySelector('span.minutes');
+		secs=s.querySelector('span.seconds');
+		cents=s.querySelector('span.centiseconds');
+
+	start.addEventListener('click',startTimer);
+	stop.addEventListener('click',stopTimer);
+	reset.addEventListener('click',resetTimer);
+
+
+	function pad (n){
+		return('00' + n).substr(-2);
+	}
+	//function that updates the innerHTML to the current time
+	function update(){
+		var now = new Date().getTime(),
+			dt= now - lastupdatetime;
+
+		currentTimer += dt;
+
+		var time = new Date(currentTimer);
+
+		mins.innerHTML=pad(time.getMinutes());
+		secs.innerHTML=pad(time.getSeconds());
+		cents.innerHTML=pad(Math.floor(time.getMilliseconds()/ 10));
+
+		lastupdatetime=now;
+	}
+	// functions that start and stop timer
+	function startTimer () {
+		if (!interval) {
+			lastupdatetime= new Date().getTime();
+			interval=setInterval(update,1);
+		}
+		
+	};
+	function stopTimer(){
+		clearInterval(interval);
+		interval=0;
+
+	}
+	function resetTimer(){
+		stopTimer();
+
+		currentTimer=0;
+
+		mins.innerHTML=secs.innerHTML=cents.innerHTML=pad(0);
+	}
+	var lap= document.getElementById('lap');
+	var laps=document.getElementById('laps');
+	
+	lap.onclick=function(){
+		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+	}
+	
+});
+
 
 //Function to find location and display map of the local area
 // function getLocation() {
@@ -220,3 +304,6 @@ for (j = 0; j < 5; j++) {
 // $(document).on("click", "#favorite", function() {
 // 	alert("Click works");
 })
+
+
+

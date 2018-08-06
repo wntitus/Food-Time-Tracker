@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <title>Quick Bite</title>
 
   <!-- FONT -->
@@ -26,6 +27,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 
 <body>
@@ -125,11 +127,15 @@
     <div class="controls">
       <button class="start">Start</button>
       <button class="stop">Stop</button>
+      <button class="reset">Reset</button>
+      <button id="lap">On Route!</button>
     </div>
     <div class="display">
       <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
     </div>
+    <ul id="laps"></ul>
   </div>
+
 
   </div>
 
