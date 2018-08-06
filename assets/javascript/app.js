@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // var database = firebase.databa4se();
 
 //Variables to find fastest restaurant
-
+var latlong;
 
 //Firebase will be used to store past selections and user times(if time allows for timer to be added)
 
@@ -196,7 +196,23 @@ for (j = 0; j < 5; j++) {
 	totalTimeArr.splice(fastestIndex, 1);
 	console.log(namesArr);
 	console.log(totalTimeArr);
-}
+
+};
+
+//Function to find location and display map of the local area
+// function getLocation() {
+// 	navigator.geolocation.getCurrentPosition(showPosition);
+// }
+// function showPosition(position) {
+// 	latlong = position.coords.latitude + "," + position.coords.longitude;
+
+// 	var url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latlong + "&zoom=14&size=400x300&sensor=false&key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8";
+
+// 	$("#map").html("<img src='" + url + "'>");
+// 	$("#map").prepend(url);
+// 	// alert(latlong);
+// }
+// getLocation();
 
 
 
