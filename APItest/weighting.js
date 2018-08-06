@@ -45,10 +45,7 @@ function weighter(){
                 if (currentElem === "point_of_interest") {
                     typesArray.splice(index);
                     junk.push(currentElem);
-                } else if (currentElem === "establishment") {
-                    typesArray.splice(index);
-                    junk.push(currentElem);
-                }
+                } 
             }
             console.log(typesArray.length)
             console.log(junk);
