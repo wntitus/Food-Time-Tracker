@@ -98,3 +98,39 @@ for (j = 0; j < 5; j++) {
 }
 //Find and store the 5 fastest restaurants to an array
 //Find the fastest time 
+
+
+
+
+// logic for timer ----->
+
+// class var for stopwatch
+var ss=document.getElementsByClassName('stopwatch');
+// function for when variables are called
+[].forEach.call(ss, function (s){
+	var currentTimer=0;
+		interval=0;
+		lastupdatetime=new Date().getTime(),
+		start= $.querySelector('button.start');
+		stop= $.querySelector('button.stop');
+		mins= $.querySelector('span.minutes');
+		secs=$.querySelector('span.seconds');
+		cents=$.querySelector('span.centiseconds');
+
+	
+	function pad (n){
+		return('00' + n).substr(-2);
+	}
+	//function that updates the innerHTML to the current time
+	function update(){
+		var now = new Date().getTime(),
+			dt= now - lastupdatetime;
+		currentTimer += dt;
+
+		var time = new Date(currentTimer);
+		min.innerHTML=pad(time.getMinutes)
+
+
+		lastupdatetime=now;
+	}
+});
