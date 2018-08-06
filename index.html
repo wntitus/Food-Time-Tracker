@@ -35,15 +35,11 @@
   <!-- NAV BAR -->
   <nav>
     <div class="nav-wrapper">
-      <!-- DESK NAV -->
+      <!-- BRAND -->
       <a href="index.html" class="brand-logo center"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:55px;"></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="records.html">Records</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-      </ul>
 
-      <!-- MOBILE NAV -->
-      <ul id="slide-out" class="sidenav">
+      <!-- HAMBURGER SLIDE OUT NAV -->
+      <ul id="slide-out" class="sidenav right button-collapse show-on-large">
         <li><div class="user-view">
           <a href="index.html"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:px;"></a>
         </div></li>
@@ -54,6 +50,7 @@
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+
 
   <!-- Page Content goes here -->
   <div class="container">
@@ -69,44 +66,44 @@
     </div>
 
 
-    <!-- Selected Restaurant --> 
-    <div class="col s12">
+  <!-- Selected Restaurant --> 
+  <div class="col s12">
 
-      <div class ="col s12">
-        <div><h2 id="restaurant-input">Restaurant Name</h2></div>
+    <div class ="col s12">
+      <div><h2 id="restaurant-input">Restaurant Name</h2></div>
 
-        <!-- Restuarant Bio -->
-        <div class="row">
-          <div class="col s12" id="distance">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec imperdiet erat. Nullam cursus nibh sit amet congue faucibus. Sed sed lectus ut ex efficitur rutrum. Pellentesque ultrices diam sed rhoncus luctus. Aenean sed facilisis ante, et blandit mi. Aenean non ex at tellus sagittis blandit. Ut imperdiet porta hendrerit. In odio nisl, porttitor eu efficitur sit amet, posuere vitae mi. Duis vestibulum fringilla ornare.</div>
-        </div>
-      </div>
+      <!-- Restuarant Bio -->
       <div class="row">
-        <div class="col s12 m2" id="distance">Distance</div>
-        <div class="col s12 m2" id="commute_time">Commute Time</div>
-        <div class="col s12 m8 right-align" id="total_time">Total Time</div>
-      </div>      
+        <div class="col s12" id="distance">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec imperdiet erat. Nullam cursus nibh sit amet congue faucibus. Sed sed lectus ut ex efficitur rutrum. Pellentesque ultrices diam sed rhoncus luctus. Aenean sed facilisis ante, et blandit mi. Aenean non ex at tellus sagittis blandit. Ut imperdiet porta hendrerit. In odio nisl, porttitor eu efficitur sit amet, posuere vitae mi. Duis vestibulum fringilla ornare.</div>
+      </div>
     </div>
     <div class="row">
-      <div class"col sm12 center-align" id="timer">
-        <div class="stopwatch">
-          <div class="controls">
-            <button class="start">Start</button>
-            <button class="stop">Stop</button>
-            <button class="reset">Reset</button>
-            <button class="save">Save!</button>
-          </div>
-          <div class="display">
-            <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
-          </div>
+      <div class="col s12 m2" id="distance">Distance</div>
+      <div class="col s12 m2" id="commute_time">Commute Time</div>
+      <div class="col s12 m8 right-align" id="total_time">Total Time</div>
+    </div>      
+  </div>
+  <div class="row">
+    <div class"col sm12 center-align" id="timer">
+      <div class="stopwatch">
+        <div class="controls">
+          <button class="start">Start</button>
+          <button class="stop">Stop</button>
+          <button class="reset">Reset</button>
+          <button class="save">Save!</button>
         </div>
-        <script src="assets/javascript/app.js"></script>
+        <div class="display">
+          <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
+        </div>
       </div>
+      <script src="assets/javascript/app.js"></script>
     </div>
-
-
   </div>
 
-  <!-- Sticky Footer Push -->
+
+</div>
+
+<!-- Sticky Footer Push -->
 <!--   <main></main>
 -->
 
@@ -116,7 +113,7 @@
     <div class="copyright col s12 center-align hide-on-med-and-down">©Food Rangers</div>
   </div>
 </footer>
-</div>
+  </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 

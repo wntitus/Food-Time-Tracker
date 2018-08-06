@@ -120,10 +120,12 @@ for (j = 0; j < 5; j++) {
 	//Row with Restaurant name and favorite icon
 	var rowOne = $("<div>");
 	rowOne.addClass("row");
+	
 	//Restaurant Name
 	var nameDiv = $("<div>");
 	nameDiv.addClass("col s8 m8");
 	nameDiv.html("<h5 id='restaurant-input'>" + namesArr[fastestIndex] + "</h5>");
+	
 	//Favorite icon
 	var favDiv = $("<div>");
 	favDiv.addClass("col s2 m2 right-align");
@@ -217,10 +219,14 @@ for (j = 0; j < 5; j++) {
  $("#favorite").click(function () {
 	$("#favorite").html('<i class="small material-icons">favorite</i>');
 
+	// if clicked again it reverts back to the old state 
+   
+
+
 	//Add a function here to append the whole card to the favorites page. Whooooohooo
-	
 
     })
+
 
 
 
