@@ -103,7 +103,6 @@ for (j = 0; j < 5; j++) {
 
 	//Restaurant image
 	var rowPic = $("<div>");
-	rowPic.addClass("row");
 	var picDiv = $("<div>");
 	picDiv.addClass("col s12 m4");
 	picDiv.attr("id", "restaurant_img");
@@ -118,7 +117,7 @@ for (j = 0; j < 5; j++) {
 	rowOne.addClass("row");
 	//Restaurant Name
 	var nameDiv = $("<div>");
-	nameDiv.addClass("col s6 m8");
+	nameDiv.addClass("col s7 m8");
 	nameDiv.html("<h5 id='restaurant-input'>Restaurant Name:<br>" + namesArr[fastestIndex] + "</h5>");
 	//Favorite icon
 	var favDiv = $("<div>");
@@ -128,6 +127,7 @@ for (j = 0; j < 5; j++) {
 	heart.addClass("small material-icons");
 	heart.text("favorite_border");
 
+	favDiv.append(heart);
 	//Append the name and heart icon to the row
 	rowOne.append(nameDiv);
 	rowOne.append(favDiv);
@@ -135,7 +135,7 @@ for (j = 0; j < 5; j++) {
 
 	//Row that has food type and address
 	var rowTwo = $("<div>");
-	// rowTwo.addClass("row");
+	rowTwo.addClass("row");
 	var typeDiv = $("<div>");
 	typeDiv.addClass("col s12");
 	typeDiv.html("<h6>Type of Food: </h6>");
@@ -180,14 +180,11 @@ for (j = 0; j < 5; j++) {
 	rowThree.append(totalDiv);
 	rowThree.append(goDiv);
 
-	//Append all of the rows to the master row that holds everything	
+	//Append all of the rows to the master row that holds everything
+	rowAll.append(rowPic);	
 	rowAll.append(rowOne);
 	rowAll.append(rowTwo);
 	rowAll.append(rowThree);
-	// rowAll.append(thirdRow);
-	// newCard.append(rowPic, picDiv);
-	// newCard.append(rowOne, nameDiv, favDiv, heart, rowTwo, typeDiv, addressDiv); 
-	// newCard.append(rowThree, distDiv, commuteDiv, totalDiv, goDiv, goImage);
 
 	//Attach the master row to the card
 	newCard.append(rowAll);
