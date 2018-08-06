@@ -1,3 +1,6 @@
+navigator.geolocation.getCurrentPosition(userLocation) 
+
+
 
 document.addEventListener("DOMContentLoaded", function(){
 	$('.preloader-background').delay(1700).fadeOut('slow');
@@ -8,24 +11,15 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-// Initialize Firebase
-// var config = {
-//     apiKey: "AIzaSyA_Trd-05zcJMwzm5Utn20_fMJUrHRrFo4",
-//     authDomain: "foodranger-ce610.firebaseapp.com",
-//     databaseURL: "https://foodranger-ce610.firebaseio.com",
-//     projectId: "foodranger-ce610",
-//     storageBucket: "foodranger-ce610.appspot.com",
-//     messagingSenderId: "472127333488"
-// };
-// firebase.initializeApp(config);
 
-// //Database to refrence firebase
-// var database = firebase.databa4se();
-
+function userLocation(position) {
 //Variables to find fastest restaurant
-var latlong;
+let latitude = position.coords.latitude;
+let longitude = position.coords.longitude;
 
-//Firebase will be used to store past selections and user times(if time allows for timer to be added)
+const proxy = "https://cors-anywhere.herokuapp.com/"; 
+const placeURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location=" + latitude + "," + longitude + "&radius=8000&keyword=quick,food,takeaway";
+
 
 
 //Test pushing objects and sorting
@@ -283,27 +277,7 @@ var ss=document.getElementsByClassName('stopwatch');
 });
 
 
-//Function to find location and display map of the local area
-// function getLocation() {
-// 	navigator.geolocation.getCurrentPosition(showPosition);
-// }
-// function showPosition(position) {
-// 	latlong = position.coords.latitude + "," + position.coords.longitude;
-
-// 	var url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latlong + "&zoom=14&size=400x300&sensor=false&key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8";
-
-// 	$("#map").html("<img src='" + url + "'>");
-// 	$("#map").prepend(url);
-// 	// alert(latlong);
-// }
-// getLocation();
-
-
-
-//User can add a restaurant to their favorites list
-// $(document).on("click", "#favorite", function() {
-// 	alert("Click works");
 })
 
-
+}
 
