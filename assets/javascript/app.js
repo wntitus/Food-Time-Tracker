@@ -96,6 +96,17 @@ for (j = 0; j < 5; j++) {
 	//Makes a card with the restaurant info
 	var newCard = $("<div>");
 	newCard.addClass("card horizontal");
+
+	//Restaurant image
+	var rowPic = $("<div>");
+	rowPic.addClass("row");
+	var picDiv = $("<div>");
+	picDiv.addClass("col");
+	picDiv.addClass("s12");
+	picDiv.addClass("m4");
+	picDiv.attr("id", "restaurant_img");
+	picDiv.attr("sytle", "padding:0px;");
+	picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
 	
 	//Row with Restaurant name and favorite icon
 	var rowOne = $("<div>");
@@ -170,23 +181,9 @@ for (j = 0; j < 5; j++) {
 	goImage.addClass("btn");
 	goImage.text("Lets Go");
 
-
+	newCard.append(rowPic, picDiv);
 	newCard.append(rowOne, nameDiv, favDiv, heart, rowTwo, typeDiv, addressDiv); 
 	newCard.append(rowThree, distDiv, commuteDiv, totalDiv, goDiv, goImage);
-
-	// newCard.append(nameDiv);
-	// newCard.append(favDiv);
-	// newCard.append(heart);
-	
-
-
-        //     "<div class='row'>" +
-        //         "<div class='col s12 m2 center-align' id='distance'>Distance </div>" +
-        //         "<div class='col s12 m2 center-align' id='commute_time'>Commute Time: " + maps[namesArr[fastestIndex]] + "</div>" +
-        //         "<div class='col s12 m4 center-align' id='total_time'>Total Time: " + totalTimeArr[fastestIndex] + "</div>" +
-        //         "<div class='col s12 m4 right-align'><a class='waves-effect waves-light btn'>Lets Go</a></div>" +
-        //     "</div>" +
-		// "</div>"
 	
 	$("#cards").append(newCard);
 
