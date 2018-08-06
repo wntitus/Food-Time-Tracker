@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function(){
 	$('.preloader-background').delay(1700).fadeOut('slow');
 	
 	$('.preloader-wrapper')
-		.delay(1700)
-		.fadeOut();
+	.delay(1700)
+	.fadeOut();
 });
 
 
@@ -30,7 +30,7 @@ var latlong;
 
 //Test pushing objects and sorting
 var places = {
-    mcdonalds: 15,
+	mcdonalds: 15,
 	habibi: 20,
 	chipotle: 15,
 	lazymoon: 35,
@@ -40,8 +40,8 @@ var places = {
 };
 
 var maps = {
-    mcdonalds: 10,
-    habibi: 7,
+	mcdonalds: 10,
+	habibi: 7,
 	lazymoon: 3,
 	tijuanaflats: 4,
 	burgerfi: 8,
@@ -90,7 +90,21 @@ for (j = 0; j < 5; j++) {
 	topFive.push(namesArr[fastestIndex]);
 	topFive.push(totalTimeArr[fastestIndex]);
 	console.log(topFive);
-	
+//Find and store the 5 fastest restaurants to an array
+//Find the fastest time 
+
+
+// ========= Navbar Animation =========//
+document.addEventListener('DOMContentLoaded', function() {
+	var elems = document.querySelectorAll('.sidenav');
+	var instances = M.Sidenav.init(elems, options);
+});
+
+$(document).ready(function(){
+	$('.sidenav').sidenav();
+});
+// ========= Navebar End ========//
+
 
 // ========= Dynamic Restaurant Generation =========== //
 	//Populate the website with the fastest restaurants
@@ -211,20 +225,20 @@ for (j = 0; j < 5; j++) {
 
 }
 
-//Find and store the 5 fastest restaurants to an array
-//Find the fastest time 
+// ========= Dyn Gen End =========//
 
-// ========= Favorite Heart Click ==========
- $("#favorite").click(function () {
+
+// ========= Favorite Heart Click ========== //
+$("#favorite").click(function () {
 	$("#favorite").html('<i class="small material-icons">favorite</i>');
 
 	// if clicked again it reverts back to the old state 
-   
+
 
 
 	//Add a function here to append the whole card to the favorites page. Whooooohooo
 
-    })
+})
 
 
 
@@ -240,15 +254,15 @@ var ss=document.getElementsByClassName('stopwatch');
 // function for when variables are called
 [].forEach.call(ss, function (s){
 	var currentTimer=0;
-		interval=0;
-		lastupdatetime=new Date().getTime(),
-		start= s.querySelector('button.start');
-		stop= s.querySelector('button.stop');
-		reset= s.querySelector('button.reset');
-		save= s.querySelector('button.save')
-		mins= s.querySelector('span.minutes');
-		secs=s.querySelector('span.seconds');
-		cents=s.querySelector('span.centiseconds');
+	interval=0;
+	lastupdatetime=new Date().getTime(),
+	start= s.querySelector('button.start');
+	stop= s.querySelector('button.stop');
+	reset= s.querySelector('button.reset');
+	save= s.querySelector('button.save')
+	mins= s.querySelector('span.minutes');
+	secs=s.querySelector('span.seconds');
+	cents=s.querySelector('span.centiseconds');
 
 	start.addEventListener('click',startTimer);
 	stop.addEventListener('click',stopTimer);
@@ -261,7 +275,7 @@ var ss=document.getElementsByClassName('stopwatch');
 	//function that updates the innerHTML to the current time
 	function update(){
 		var now = new Date().getTime(),
-			dt= now - lastupdatetime;
+		dt= now - lastupdatetime;
 
 		currentTimer += dt;
 
