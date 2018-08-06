@@ -4,6 +4,11 @@ function userLocation(position) {
 
     let placesDistance = {};
     let placeNames = Object.keys(placesDistance);
+    let currentDate = new Date();
+    let hours = currentDate.getHours();
+    let minutes = currentDate.getMinutes();
+    let seconds = currentDate.getSeconds();
+    console.log(hours + ":" + minutes + ":" + seconds);
 
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
@@ -21,20 +26,20 @@ function userLocation(position) {
             let responsePlaceID = output.place_id;
             let matrixURL = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&origins=" + latitude + "," + longitude + "&destinations=place_id:" + responsePlaceID;
             if (placeNames.includes(output.name) === false) {
-                placesDistance[output.name] = responsePlaceID;
-            
                 $.ajax({
                     url : proxy + matrixURL,
                     method : "GET"
                 }).done(function(resp) {
                     console.log(resp);
-                    placesDistance[output.name] = resp.rows[0].elements[0].duration.text;
+                    let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
+                    placesDistance[output.name] = timeInMinutes;
+                    console.log(placesDistance);
                 })
             }    
         }
     })
 
-    console.log(placesDistance);
+
 
 
 
