@@ -85,47 +85,15 @@ function userLocation(position) {
                     }
                     console.log(placesTravelTime);
                     console.log(placesTimeSpent);
-                }).done(function(){
-					let namesArr = Object.keys(placesTravelTime);
-					//Make an array to hold the total time
-					var totalTimeArr = [];
-					console.log(namesArr.length);
-					for(i = 0; i < namesArr.length; i++) {
-						console.log(i);
-						var restName = namesArr[i];
-						console.log(restName);
-						console.log(placesTravelTime);
-						//Store the drive time to a variable
-						var drive = placesTravelTime[restName];
-						console.log(drive);
-						//Store the average time people spend in the restaurant in a variable
-						var eatTime = placesTravelTime[restName];
-						//Add the drive time and time spent in restaurant
-						totalTime = drive + eatTime;
-						//Push the total time into an array so that the index will be aligned with the names array
-						totalTimeArr.push(totalTime);
-						console.log(totalTime);
-						
-					}
+                
+					namesArr = Object.keys(placesTravelTime);
+
+					
 					//Function call with display5ToPage();
-					console.log(totalTimeArr);
+					console.log(namesArr);
 
-					var topFive = [];
-
-					let fiveGen = function() {
-											//Find the fastest time and store it in an array with the restaurant name next to it.
+					//Find the fastest time and store it in an array with the restaurant name next to it.
 					//We want to do this 5 times and after each time remove the fastest
-					for (j = 0; j < 5; j++) {
-						//Find the fastest restaurant time
-						var fastest = Math.min.apply(Math, totalTimeArr);
-						console.log(fastest);
-						//Use the index of the fastest time to find which restaurant it is
-						var fastestIndex = totalTimeArr.indexOf(fastest);
-						console.log(namesArr[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
-						//Push the restaurant and total time to top five array
-						topFive.push(namesArr[fastestIndex]);
-						topFive.push(totalTimeArr[fastestIndex]);
-						console.log(topFive);
 					//Find and store the 5 fastest restaurants to an array
 					//Find the fastest time 
 
@@ -140,6 +108,8 @@ function userLocation(position) {
 						$('.sidenav').sidenav();
 					});
 					// ========= Navebar End ========//
+
+
 
 
 					// ========= Dynamic Restaurant Generation =========== //
@@ -174,7 +144,7 @@ function userLocation(position) {
 						//Restaurant Name
 						var nameDiv = $("<div>");
 						nameDiv.addClass("col s8 m8");
-						nameDiv.html("<h5 id='restaurant-input'>" + namesArr[fastestIndex] + "</h5>");
+						nameDiv.html("<h5 id='restaurant-input'>" + output.name + "</h5>");
 						
 						//Favorite icon
 						var favDiv = $("<div>");
@@ -225,12 +195,12 @@ function userLocation(position) {
 						var commuteDiv = $("<div>");
 						commuteDiv.addClass("col s4 m2 center-align");
 						commuteDiv.attr("id", "commute_time");
-						commuteDiv.text("Commute Time: " + placesTravelTime[namesArr[fastestIndex]]);
+						commuteDiv.text("Commute Time: " + placesTravelTime[output.name]);
 						//Total time to and in restaurant
 						var totalDiv = $("<div>");
 						totalDiv.addClass("col s4 m2 center-align");
 						totalDiv.attr("id", "total_time");
-						totalDiv.text("Total Time: " + totalTimeArr[fastestIndex]);
+						totalDiv.text("Total Time: " );
 
 						//Append distance, commute time, total est time, and directions button to the thrird row
 						rowThree.append(distDiv);
@@ -254,13 +224,13 @@ function userLocation(position) {
 						$("#cards").append(newCard);
 
 						//Remove the fastest restaurant so it doesn't show up again
-						namesArr.splice(fastestIndex, 1);
-						totalTimeArr.splice(fastestIndex, 1);
-						console.log(namesArr);
-						console.log(totalTimeArr);
+						// namesArr.splice(fastestIndex, 1);
+						// totalTimeArr.splice(fastestIndex, 1);
+						// console.log(namesArr);
+						// console.log(totalTimeArr);
 
-					}
-					}
+					
+					
 
 					// ========= Dyn Gen End =========//
 
