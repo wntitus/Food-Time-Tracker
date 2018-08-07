@@ -215,6 +215,84 @@ h6 {
 		text-align: center;
 		margin-top: 10px;
 	}
+	#Arrived{
+		background-color: #ffce47
+	}
+	#Arrived:hover{
+		background-color: #ffd362
+	}
+	#Arrived:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+	#Ordered{
+		background-color: #ffce47
+	}
+	#Ordered:hover{
+		background-color: #ffd362
+	}
+	#Ordered:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+	#Pickedup{
+		background-color: #ffce47
+	}
+	#Pickedup:hover{
+		background-color: #ffd362
+	}
+	#Pickedup:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+	#Startingmeal{
+		background-color: #ffce47
+	}
+	#Startingmeal:hover{
+		background-color: #ffd362
+	}
+	#Startingmeal:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+	#Finishedmeal{
+		background-color: #ffce47
+	}
+	#Finishedmeal:hover{
+		background-color: #ffd362
+	}
+	#Finishedmeal:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+
+	#Onrouteback{
+		background-color: #ffce47
+	}
+	#Onrouteback:hover{
+		background-color: #ffd362
+	}
+	#Onrouteback:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
+	#Arrived2{
+		background-color: #ffce47
+	}
+	#Arrived2:hover{
+		background-color: #ffd362
+	}
+	#Arrived2:active{
+		margin-bottom:0;
+		margin-top:4px;
+		box-shadow: none;
+	}
 	.display{
 	font-size: 50px;
 	font-family: sans-serif;

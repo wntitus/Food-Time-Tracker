@@ -222,28 +222,28 @@ var ss=document.getElementsByClassName('stopwatch');
 // function for when variables are called
 [].forEach.call(ss, function (s){
 	var currentTimer=0;
-	interval=0;
-	lastupdatetime=new Date().getTime(),
-	start= s.querySelector('button.start');
-	stop= s.querySelector('button.stop');
-	reset= s.querySelector('button.reset');
-	save= s.querySelector('button.save')
-	mins= s.querySelector('span.minutes');
-	secs=s.querySelector('span.seconds');
-	cents=s.querySelector('span.centiseconds');
+		interval=0;
+		lastupdatetime=new Date().getTime(),
+		start= s.querySelector('button.start');
+		stop= s.querySelector('button.stop');
+		reset= s.querySelector('button.reset');
+		save= s.querySelector('button.save')
+		mins= s.querySelector('span.minutes');
+		secs=s.querySelector('span.seconds');
+		cents=s.querySelector('span.centiseconds');
 
 	start.addEventListener('click',startTimer);
 	stop.addEventListener('click',stopTimer);
 	reset.addEventListener('click',resetTimer);
-
-
+	
+	
 	function pad (n){
 		return('00' + n).substr(-2);
 	}
 	//function that updates the innerHTML to the current time
 	function update(){
 		var now = new Date().getTime(),
-		dt= now - lastupdatetime;
+			dt= now - lastupdatetime;
 
 		currentTimer += dt;
 
@@ -278,9 +278,58 @@ var ss=document.getElementsByClassName('stopwatch');
 	var lap= document.getElementById('lap');
 	var laps=document.getElementById('laps');
 	
+	foodarray=["Arrived!","Ordered Food!","Order Picked Up!","Starting Meal!","Finished Meal","On Route!","Arrived!"]
 	lap.onclick=function(){
 		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
 	}
+	$(document).ready(function(){
+		$("#Arrived").hide();
+		$("#Ordered").hide();
+		$("#Pickedup").hide();
+		$("#Startingmeal").hide();
+		$("#Finishedmeal").hide();
+		$("#Onrouteback").hide();
+		$("#Arrived2").hide();
+		$("#lap").click(function(){
+			$("#lap").hide();
+			$("#Arrived").show();
+		});
+		$("#Arrived").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Arrived").hide();
+			$("#Ordered").show();
+		});
+		$("#Ordered").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Ordered").hide();
+			$("#Pickedup").show();
+		});
+		$("#Pickedup").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Pickedup").hide();
+			$("#Startingmeal").show();
+		});
+		$("#Startingmeal").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Startingmeal").hide();
+			$("#Finishedmeal").show();
+		});
+		$("#Finishedmeal").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Finishedmeal").hide();
+			$("#Onrouteback").show();
+		});
+		$("#Onrouteback").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Onrouteback").hide();
+			$("#Arrived2").show();
+		});
+		$("#Arrived2").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+		});
+
+		
+	});
 	
 });
 
@@ -367,4 +416,4 @@ function showPosition(position) {
 // 	alert("Click works");
 
 
-})
+})};
