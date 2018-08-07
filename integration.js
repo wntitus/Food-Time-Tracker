@@ -2,8 +2,9 @@ navigator.geolocation.getCurrentPosition(userLocation)
 
 function userLocation(position) {
 
-    let placesDistance = {};
-    let placeNames = Object.keys(placesDistance);
+    let placesTravelTime = {};
+    let placesTimeSpent = {};
+    let placeNames = Object.keys(placesTravelTime);
     let currentDate = new Date();
     let hours = currentDate.getHours();
     let minutes = currentDate.getMinutes();
@@ -32,8 +33,22 @@ function userLocation(position) {
                 }).done(function(resp) {
                     console.log(resp);
                     let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
-                    placesDistance[output.name] = timeInMinutes;
-                    console.log(placesDistance);
+                    placesTravelTime[output.name] = timeInMinutes;
+                    if (0 <= hours <= 11) {
+                        let earlyTimeSpent = Math.floor(Math.random() * 15) + 9;
+                        placesTimeSpent[output.name] = earlyTimeSpent;
+                    } else if (12 <= hours <= 14) {
+                        let lunchTimeSpent = Math.floor(Math.random() * 20) + 13;
+                        placesTimeSpent[output.name] = lunchTimeSpent;
+                    } else if (15 <= hours <= 20) {
+                        let lateTimeSpent = Math.floor(Math.random() * 17) + 11;
+                        placesTimeSpent[output.name] = lateTimeSpent;
+                    } else {
+                        let otherTimeSpent = Math.floor(Math.random() * 12) + 7;
+                        placesTimeSpent[output.name] = otherTimeSpent;
+                    }
+                    console.log(placesTravelTime);
+                    console.log(placesTimeSpent);
                 })
             }    
         }
