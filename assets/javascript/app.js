@@ -331,6 +331,8 @@ var ss=document.getElementsByClassName('stopwatch');
 		
 	});
 
+	// modal below
+
 	var modal=document.getElementById('#lapmodal');
 	var btn=document.getElementById('#Arrived2');
 	var span =document.getElementsByClassName("close")[0];
