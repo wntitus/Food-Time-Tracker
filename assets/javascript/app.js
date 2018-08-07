@@ -63,7 +63,8 @@ function userLocation(position) {
                     console.log(resp);
                     let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
                     // this is where the travel time object is updated with the place's name and the travel time in minutes
-                    placesTravelTime[output.name] = timeInMinutes;
+					placesTravelTime[output.name] = timeInMinutes;
+					let namesArr = Object.keys(placesTravelTime);
                     // this series of if/else statements will look at the current hour and set the estimated time spent for each restaraunt 
                     // to a semi random number based on the time of day ie lunchtime is busiest
                     if (0 <= hours <= 11) {
@@ -80,34 +81,27 @@ function userLocation(position) {
                         placesTimeSpent[output.name] = otherTimeSpent;
                     }
                     console.log(placesTravelTime);
-                    console.log(placesTimeSpent);
-                })
-            }    
-        }
-    })
-
-
-//Make an array to hold the total time
-var totalTimeArr = [];
-for(i = 0; i < placeNames.length; i++) {
-	console.log(i);
-	var restName = placeNames[i];
-	console.log(restName);
-	console.log(placesTravelTime);
-	//Store the drive time to a variable
-	var drive = placesTravelTime[restName];
-	console.log(drive);
-	//Store the average time people spend in the restaurant in a variable
-	var eatTime = placesTravelTime[restName];
-	//Add the drive time and time spent in restaurant
-	totalTime = drive + eatTime;
-	//Push the total time into an array so that the index will be aligned with the names array
-	totalTimeArr.push(totalTime);
-	console.log(totalTime);
-}
-console.log(totalTimeArr);
-
-var topFive = [];
+					console.log(placesTimeSpent);
+					//Make an array to hold the total time
+					var totalTimeArr = [];
+					for(i = 0; i < namesArr.length; i++) {
+						console.log(i);
+						var restName = namesArr[i];
+						console.log(restName);
+						console.log(placesTravelTime);
+						//Store the drive time to a variable
+						var drive = placesTravelTime[restName];
+						console.log(drive);
+						//Store the average time people spend in the restaurant in a variable
+						var eatTime = placesTravelTime[restName];
+						//Add the drive time and time spent in restaurant
+						totalTime = drive + eatTime;
+						//Push the total time into an array so that the index will be aligned with the names array
+						totalTimeArr.push(totalTime);
+						console.log(totalTime);
+					}
+					console.log(totalTimeArr);
+					var topFive = [];
 $(document).ready(function() {
 //Find the fastest time and store it in an array with the restaurant name next to it.
 //We want to do this 5 times and after each time remove the fastest
@@ -117,9 +111,9 @@ for (j = 0; j < 5; j++) {
 	console.log(fastest);
 	//Use the index of the fastest time to find which restaurant it is
 	var fastestIndex = totalTimeArr.indexOf(fastest);
-	console.log(placeNames[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
+	console.log(namesArr[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
 	//Push the restaurant and total time to top five array
-	topFive.push(placeNames[fastestIndex]);
+	topFive.push(namesArr[fastestIndex]);
 	topFive.push(totalTimeArr[fastestIndex]);
 	console.log(topFive);
 //Find and store the 5 fastest restaurants to an array
@@ -170,7 +164,7 @@ $(document).ready(function(){
 	//Restaurant Name
 	var nameDiv = $("<div>");
 	nameDiv.addClass("col s8 m8");
-	nameDiv.html("<h5 id='restaurant-input'>" + placeNames[fastestIndex] + "</h5>");
+	nameDiv.html("<h5 id='restaurant-input'>" + namesArr[fastestIndex] + "</h5>");
 	
 	//Favorite icon
 	var favDiv = $("<div>");
@@ -221,7 +215,7 @@ $(document).ready(function(){
 	var commuteDiv = $("<div>");
 	commuteDiv.addClass("col s4 m2 center-align");
 	commuteDiv.attr("id", "commute_time");
-	commuteDiv.text("Commute Time: " + placesTravelTime[placeNames[fastestIndex]]);
+	commuteDiv.text("Commute Time: " + placesTravelTime[namesArr[fastestIndex]]);
 	//Total time to and in restaurant
 	var totalDiv = $("<div>");
 	totalDiv.addClass("col s4 m2 center-align");
@@ -250,9 +244,9 @@ $(document).ready(function(){
 	$("#cards").append(newCard);
 
 	//Remove the fastest restaurant so it doesn't show up again
-	placeNames.splice(fastestIndex, 1);
+	namesArr.splice(fastestIndex, 1);
 	totalTimeArr.splice(fastestIndex, 1);
-	console.log(placeNames);
+	console.log(namesArr);
 	console.log(totalTimeArr);
 
 }
@@ -350,6 +344,14 @@ var ss=document.getElementsByClassName('stopwatch');
 
 
 })
+                })
+            }    
+        }
+    })
+
+
+
+
 
 }
 
