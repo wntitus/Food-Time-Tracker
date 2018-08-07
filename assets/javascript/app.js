@@ -222,28 +222,28 @@ var ss=document.getElementsByClassName('stopwatch');
 // function for when variables are called
 [].forEach.call(ss, function (s){
 	var currentTimer=0;
-	interval=0;
-	lastupdatetime=new Date().getTime(),
-	start= s.querySelector('button.start');
-	stop= s.querySelector('button.stop');
-	reset= s.querySelector('button.reset');
-	save= s.querySelector('button.save')
-	mins= s.querySelector('span.minutes');
-	secs=s.querySelector('span.seconds');
-	cents=s.querySelector('span.centiseconds');
+		interval=0;
+		lastupdatetime=new Date().getTime(),
+		start= s.querySelector('button.start');
+		stop= s.querySelector('button.stop');
+		reset= s.querySelector('button.reset');
+		save= s.querySelector('button.save')
+		mins= s.querySelector('span.minutes');
+		secs=s.querySelector('span.seconds');
+		cents=s.querySelector('span.centiseconds');
 
 	start.addEventListener('click',startTimer);
 	stop.addEventListener('click',stopTimer);
 	reset.addEventListener('click',resetTimer);
-
-
+	
+	
 	function pad (n){
 		return('00' + n).substr(-2);
 	}
 	//function that updates the innerHTML to the current time
 	function update(){
 		var now = new Date().getTime(),
-		dt= now - lastupdatetime;
+			dt= now - lastupdatetime;
 
 		currentTimer += dt;
 
@@ -278,6 +278,7 @@ var ss=document.getElementsByClassName('stopwatch');
 	var lap= document.getElementById('lap');
 	var laps=document.getElementById('laps');
 	
+	foodarray=["Arrived!","Ordered Food!","Order Picked Up!","Starting Meal!","Finished Meal","On Route!","Arrived!"]
 	lap.onclick=function(){
 		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
 	}
