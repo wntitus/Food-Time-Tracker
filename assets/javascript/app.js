@@ -15,54 +15,90 @@ document.addEventListener("DOMContentLoaded", function(){
 
 //nesting everything inside userLocation function so we can utilize the lat and long of the user
 function userLocation(position) {
-// setting current lat and long to user position
-let latitude = position.coords.latitude;
-let longitude = position.coords.longitude;
-//setting our cors proxy and our places API url that uses the user lat and long 
-const proxy = "https://cors-anywhere.herokuapp.com/"; 
-const placeURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location=" + latitude + "," + longitude + "&radius=8000&keyword=quick,food,takeaway";
+	let placesTravelTime = {};
+    let placesTimeSpent = {};
+    let placeNames = Object.keys(placesTravelTime);
+    let currentDate = new Date();
+    let hours = currentDate.getHours();
+    let minutes = currentDate.getMinutes();
+    let seconds = currentDate.getSeconds();
+    console.log(hours + ":" + minutes + ":" + seconds);
+	// setting current lat and long to user position
+	let latitude = position.coords.latitude;
+	let longitude = position.coords.longitude;
+	//setting our cors proxy and our places API url that uses the user lat and long 
+	const proxy = "https://cors-anywhere.herokuapp.com/"; 
+    const placeURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location=" + latitude + "," + longitude + "&rankby=distance&keyword=quick,food,takeaway";
 
 
 
 //Test pushing objects and sorting
-var places = {
-	mcdonalds: 15,
-	habibi: 20,
-	chipotle: 15,
-	lazymoon: 35,
-	elcerro: 35,
-	burgerfi: 15,
-	tijuanaflats: 20 
-};
 
-var maps = {
-	mcdonalds: 10,
-	habibi: 7,
-	lazymoon: 3,
-	tijuanaflats: 4,
-	burgerfi: 8,
-	elcerro: 3,
-	chipotle: 4
-};
-console.log(places);
-console.log(maps);
 
 //Make an array to hold the restaurant names
-var namesArr = Object.keys(places);
-console.log(namesArr);
+    // first AJAX call to our places API
+    $.ajax({
+        url : proxy + placeURL,
+        method : "GET"
+    
+        // when the call is done, it executes this function which iterates over every response entry (a set of 20)
+    }).done(function(response) {
+        for (i = 0; i < 20; i++) {
+            // setting some things to variables so we can use them easier: the initial drilldown into each response item
+            // and the UNIQUE PLACE ID for each response item (this is used for the distance matrix query)
+            let output = response.results[i];
+            let responsePlaceID = output.place_id;
+            // our distance matrix query url - we're using each response item's unique place ID to query the distance between the user's
+            // current location and the location of the place
+            let matrixURL = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&origins=" + latitude + "," + longitude + "&destinations=place_id:" + responsePlaceID;
+            // if our object/names array doesnt already have an entry with that name (ie no duplicate places), we make another ajax call
+            // to the distance matrix API
+            if (placeNames.includes(output.name) === false) {
+                $.ajax({
+                    url : proxy + matrixURL,
+                    method : "GET"
+                }).done(function(resp) {
+                    // when this call is complete, first we drill down into the response to get the travel time in minutes
+                    // (the travel time is returned to us in seconds, so we have to do this)
+                    console.log(resp);
+                    let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
+                    // this is where the travel time object is updated with the place's name and the travel time in minutes
+                    placesTravelTime[output.name] = timeInMinutes;
+                    // this series of if/else statements will look at the current hour and set the estimated time spent for each restaraunt 
+                    // to a semi random number based on the time of day ie lunchtime is busiest
+                    if (0 <= hours <= 11) {
+                        let earlyTimeSpent = Math.floor(Math.random() * 15) + 9;
+                        placesTimeSpent[output.name] = earlyTimeSpent;
+                    } else if (12 <= hours <= 14) {
+                        let lunchTimeSpent = Math.floor(Math.random() * 20) + 13;
+                        placesTimeSpent[output.name] = lunchTimeSpent;
+                    } else if (15 <= hours <= 20) {
+                        let lateTimeSpent = Math.floor(Math.random() * 17) + 11;
+                        placesTimeSpent[output.name] = lateTimeSpent;
+                    } else {
+                        let otherTimeSpent = Math.floor(Math.random() * 12) + 7;
+                        placesTimeSpent[output.name] = otherTimeSpent;
+                    }
+                    console.log(placesTravelTime);
+                    console.log(placesTimeSpent);
+                })
+            }    
+        }
+    })
+
 
 //Make an array to hold the total time
 var totalTimeArr = [];
-for(i = 0; i < namesArr.length; i++) {
+for(i = 0; i < placeNames.length; i++) {
 	console.log(i);
-	var restName = namesArr[i];
+	var restName = placeNames[i];
 	console.log(restName);
-	console.log(maps);
+	console.log(placesTravelTime);
 	//Store the drive time to a variable
-	var drive = maps[restName];
+	var drive = placesTravelTime[restName];
 	console.log(drive);
 	//Store the average time people spend in the restaurant in a variable
-	var eatTime = places[restName];
+	var eatTime = placesTravelTime[restName];
 	//Add the drive time and time spent in restaurant
 	totalTime = drive + eatTime;
 	//Push the total time into an array so that the index will be aligned with the names array
@@ -81,9 +117,9 @@ for (j = 0; j < 5; j++) {
 	console.log(fastest);
 	//Use the index of the fastest time to find which restaurant it is
 	var fastestIndex = totalTimeArr.indexOf(fastest);
-	console.log(namesArr[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
+	console.log(placeNames[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
 	//Push the restaurant and total time to top five array
-	topFive.push(namesArr[fastestIndex]);
+	topFive.push(placeNames[fastestIndex]);
 	topFive.push(totalTimeArr[fastestIndex]);
 	console.log(topFive);
 //Find and store the 5 fastest restaurants to an array
@@ -134,7 +170,7 @@ $(document).ready(function(){
 	//Restaurant Name
 	var nameDiv = $("<div>");
 	nameDiv.addClass("col s8 m8");
-	nameDiv.html("<h5 id='restaurant-input'>" + namesArr[fastestIndex] + "</h5>");
+	nameDiv.html("<h5 id='restaurant-input'>" + placeNames[fastestIndex] + "</h5>");
 	
 	//Favorite icon
 	var favDiv = $("<div>");
@@ -185,7 +221,7 @@ $(document).ready(function(){
 	var commuteDiv = $("<div>");
 	commuteDiv.addClass("col s4 m2 center-align");
 	commuteDiv.attr("id", "commute_time");
-	commuteDiv.text("Commute Time: " + maps[namesArr[fastestIndex]]);
+	commuteDiv.text("Commute Time: " + placesTravelTime[placeNames[fastestIndex]]);
 	//Total time to and in restaurant
 	var totalDiv = $("<div>");
 	totalDiv.addClass("col s4 m2 center-align");
@@ -214,9 +250,9 @@ $(document).ready(function(){
 	$("#cards").append(newCard);
 
 	//Remove the fastest restaurant so it doesn't show up again
-	namesArr.splice(fastestIndex, 1);
+	placeNames.splice(fastestIndex, 1);
 	totalTimeArr.splice(fastestIndex, 1);
-	console.log(namesArr);
+	console.log(placeNames);
 	console.log(totalTimeArr);
 
 }
