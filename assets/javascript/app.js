@@ -240,7 +240,7 @@ var ss=document.getElementsByClassName('stopwatch');
 	function pad (n){
 		return('00' + n).substr(-2);
 	}
-	//function that updates the innerHTML to the current time
+	//function that updates the to the current time
 	function update(){
 		var now = new Date().getTime(),
 			dt= now - lastupdatetime;
@@ -255,7 +255,7 @@ var ss=document.getElementsByClassName('stopwatch');
 
 		lastupdatetime=now;
 	}
-	// functions that start and stop timer
+	// functions that start, stop and reset timer
 	function startTimer () {
 		if (!interval) {
 			lastupdatetime= new Date().getTime();
@@ -275,14 +275,18 @@ var ss=document.getElementsByClassName('stopwatch');
 
 		mins.innerHTML=secs.innerHTML=cents.innerHTML=pad(0);
 	}
+
+	
+	//var for on route and var for empty div labeled as laps
 	var lap= document.getElementById('lap');
 	var laps=document.getElementById('laps');
 	
-	foodarray=["Arrived!","Ordered Food!","Order Picked Up!","Starting Meal!","Finished Meal","On Route!","Arrived!"]
+	//lap.onclick displays time
 	lap.onclick=function(){
 		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
 	}
 	$(document).ready(function(){
+		//hides all buttons
 		$("#Arrived").hide();
 		$("#Ordered").hide();
 		$("#Pickedup").hide();
@@ -290,6 +294,8 @@ var ss=document.getElementsByClassName('stopwatch');
 		$("#Finishedmeal").hide();
 		$("#Onrouteback").hide();
 		$("#Arrived2").hide();
+
+		//list of functions that display and log time upon being clicked which then displays another button name
 		$("#lap").click(function(){
 			$("#lap").hide();
 			$("#Arrived").show();
@@ -330,6 +336,7 @@ var ss=document.getElementsByClassName('stopwatch');
 
 		
 	});
+	// logic for timer finished
 	
 });
 
