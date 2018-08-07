@@ -133,29 +133,19 @@ $(document).ready(function(){
 	
 	//Restaurant Name
 	var nameDiv = $("<div>");
-	nameDiv.addClass("col s8 m8");
+	nameDiv.addClass("col s9 m9");
 	nameDiv.html("<h5 id='restaurant-input'>" + namesArr[fastestIndex] + "</h5>");
 	
-	//Favorite icon
-	var favDiv = $("<div>");
-	favDiv.addClass("col s2 m2 right-align");
-	favDiv.attr("id", "favorite");
-	var heart = $("<i>");
-	heart.addClass("small material-icons");
-	heart.text("favorite_border");
-
-	favDiv.append(heart);
-	//Append the name and heart icon to the row
-	rowOne.append(nameDiv);
-	rowOne.append(favDiv);
-
 	//'Lets Go' button
 	var goDiv = $("<div>");
 	goDiv.addClass("col s3 m3 right-align");
 	var goImage = $("<a>");
 	goImage.addClass("waves-effect waves-light btn");
 	goImage.text("Go");
+	
+	//Row one is appending the Restaurant name and Go button
 	rowOne.append(goImage);
+	rowOne.append(nameDiv);
 
 	//Row that has food type and address
 	var rowTwo = $("<div>");
@@ -178,17 +168,17 @@ $(document).ready(function(){
 	rowThree.attr("class", "row");
 	//Distance to restaurant
 	var distDiv = $("<div>");
-	distDiv.addClass("col s4 m2 center-align");
-	distDiv.attr("id", "distance")
+	distDiv.addClass("col s4 m4 center-align");
+	distDiv.attr("id", "distanc")
 	distDiv.text("Distance: ");
 	//Commute time to restaurant
 	var commuteDiv = $("<div>");
-	commuteDiv.addClass("col s4 m2 center-align");
+	commuteDiv.addClass("col s4 m4 center-align");
 	commuteDiv.attr("id", "commute_time");
 	commuteDiv.text("Commute Time: " + maps[namesArr[fastestIndex]]);
 	//Total time to and in restaurant
 	var totalDiv = $("<div>");
-	totalDiv.addClass("col s4 m2 center-align");
+	totalDiv.addClass("col s4 m4 center-align");
 	totalDiv.attr("id", "total_time");
 	totalDiv.text("Total Time: " + totalTimeArr[fastestIndex]);
 
@@ -223,24 +213,6 @@ $(document).ready(function(){
 
 // ========= Dyn Gen End =========//
 
-
-// ========= Favorite Heart Click ========== //
-$("#favorite").click(function () {
-	$("#favorite").html('<i class="small material-icons">favorite</i>');
-
-	// if clicked again it reverts back to the old state 
-
-
-
-	//Add a function here to append the whole card to the favorites page. Whooooohooo
-
-})
-
-
-
-
-
-// ========= End Favorite Heart Click 
 
 
 // ========= Logic for Timer =========== //
