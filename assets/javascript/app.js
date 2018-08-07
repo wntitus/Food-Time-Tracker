@@ -416,4 +416,4 @@ function showPosition(position) {
 // 	alert("Click works");
 
 
-})};
+});
