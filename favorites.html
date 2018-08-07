@@ -34,15 +34,11 @@
   <!-- NAV BAR -->
   <nav>
     <div class="nav-wrapper">
-      <!-- DESK NAV -->
+      <!-- BRAND -->
       <a href="index.html" class="brand-logo center"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:55px;"></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="records.html">Records</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-      </ul>
 
-      <!-- MOBILE NAV -->
-      <ul id="slide-out" class="sidenav">
+      <!-- HAMBURGER SLIDE OUT NAV -->
+      <ul id="slide-out" class="sidenav right button-collapse">
         <li><div class="user-view">
           <a href="index.html"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:px;"></a>
         </div></li>
@@ -50,7 +46,7 @@
         <li><a href="favorites.html">Favorites</a></li>
         <li><a class="sidenav-close" href="#!">Exit Menu</a></li>
       </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
@@ -114,14 +110,6 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&callback=initMap">
   </script>
 
-  <script>
-    // $(".favorite").html("<i class="small material-icons">favorite_border</i>")
-    $(".favorite").click(function(){
-      alert("thanks for clicking");
-      $(".favorite").html('<i class="small material-icons">favorite_border</i>');
-    });
-
-  </script>
 
 </body>
 
