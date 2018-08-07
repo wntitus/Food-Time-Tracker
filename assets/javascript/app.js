@@ -81,7 +81,9 @@ function userLocation(position) {
                     }
                     console.log(placesTravelTime);
                     console.log(placesTimeSpent);
-                })
+                }).done(function(){
+					let namesArr = Object.keys(placesTravelTime);
+				})
             }    
         }
     })
