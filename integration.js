@@ -1,3 +1,5 @@
+
+
 navigator.geolocation.getCurrentPosition(userLocation) 
 
 function userLocation(position) {
