@@ -145,10 +145,13 @@ h6 {
 }
 
 .stopwatch{
-	width: 300px;
 	border-radius: 5px;
 	padding: 15px;
+
 	margin: 5px 85px;
+
+
+
 	}
 
 	.controls{

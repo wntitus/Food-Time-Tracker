@@ -281,7 +281,10 @@ var ss=document.getElementsByClassName('stopwatch');
 	var lap= document.getElementById('lap');
 	var laps=document.getElementById('laps');
 	
+ HEAD
 	//lap.onclick displays time
+
+
 	lap.onclick=function(){
 		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
 	}
@@ -380,7 +383,7 @@ function showPosition(position) {
 	//Calculate the route from the user to the restaurant
 	function calcRoute(directionsService, directionsDisplay) {
 		var start = new google.maps.LatLng(lat, long);
-		var end = "pho88";
+		var end = "ucf";
 		directionsService.route({
 			origin: start,
 			destination: end,
