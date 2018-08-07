@@ -127,8 +127,8 @@ function userLocation(position) {
 						var picDiv = $("<div>");
 						picDiv.addClass("col s12 m4");
 						picDiv.attr("id", "restaurant_img");
-						picDiv.attr("sytle", "padding:0px;");
-						picDiv.html("<img class='responsive-img' src='" + response.image + "'>");
+						picDiv.attr("sytle", "padding:0px; height:268; width:268; background-color:#FCA743");
+						picDiv.html("<img class='responsive-img' src='" + response.photos + "'>");
 						
 						//Append picture to the card
 						picDiv.append(picDiv);
@@ -163,7 +163,7 @@ function userLocation(position) {
 						var goDiv = $("<div>");
 						goDiv.addClass("col s3 m3 right-align");
 						goDiv.attr("id", "goBtn")
-						goDiv.attr("value", output.address);
+						goDiv.attr("value", output.name);
 						var goImage = $("<a>");
 						goImage.addClass("waves-effect waves-light btn");
 						goImage.text("Go");
@@ -174,10 +174,10 @@ function userLocation(position) {
 						rowTwo.addClass("row");
 						var typeDiv = $("<div>");
 						typeDiv.addClass("col s12");
-						typeDiv.html("<h6>Type of Food:" + output.type +  "</h6>");
+						typeDiv.html("<h6>Type of Food: " + output.type +  "</h6>");
 						var addressDiv = $("<div>");
 						addressDiv.addClass("col s12");
-						addressDiv.html("<h6>Address: " + output.address + "</h6><hr>");
+						addressDiv.html("<h6>Address: " + response.formatted_address + "</h6><hr>");
 
 
 						//Append food type and address to the row
@@ -252,8 +252,9 @@ function userLocation(position) {
 
 
 
-
 					// ========= End Favorite Heart Click 
+
+
 
 
 					// ========= Logic for Timer =========== //
