@@ -9,7 +9,6 @@ function weighter(){
     let nameRatings = [];
 
     function location(position) {
-        let itemWeight = 0;
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
 
