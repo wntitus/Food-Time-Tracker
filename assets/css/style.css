@@ -29,14 +29,14 @@ nav {
     background-color: #555;
 }
 
-@media only screen and (max-width: 992px) {
+/*@media only screen and (max-width: 992px) {
 	.page-footer {
 		position: fixed;
 		bottom: 0;
 		width: 100%;
 		z-index: 1000;
 	}
-}
+}*/
 
 .preloader-background {
 	display: flex;
