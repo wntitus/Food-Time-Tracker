@@ -284,8 +284,87 @@ var ss=document.getElementsByClassName('stopwatch');
 	
 });
 
+//JS for the map and directions
+//Global variables
+var userLatLong;
+var lat;
+var long;
+var restaurantLocal = "mcdonalds"
 
-})
+//Function to find user location
+function getLocation() {
+	navigator.geolocation.getCurrentPosition(showPosition);
+};
+getLocation();
+//Store the user location
+function showPosition(position) {
+	userLatLong = position.coords.latitude + ", " + position.coords.longitude;
+	lat = position.coords.latitude;
+	long = position.coords.longitude;
+	// console.log(userLatLong);
+	console.log("lat: " + lat + " and Long: " + long);
 
+	//Initialize the map on the directions page
+	function initMap() {
+		var directionsDisplay = new google.maps.DirectionsRenderer();
+		var directionsService = new google.maps.DirectionsService();
+
+		var userLocal = new google.maps.LatLng(lat, long);
+		var mapOptions = {
+		  zoom:15,
+		  center: userLocal
+		}
+		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('directions'));
+
+		calcRoute(directionsService, directionsDisplay); 
+	}
+
+	//Calculate the route from the user to the restaurant
+	function calcRoute(directionsService, directionsDisplay) {
+		var start = new google.maps.LatLng(lat, long);
+		var end = "pho88";
+		directionsService.route({
+			origin: start,
+			destination: end,
+			travelMode: 'DRIVING'
+		  }, function(response, status) {
+			if (status === 'OK') {
+			  directionsDisplay.setDirections(response);
+			} else {
+			  window.alert('Directions request failed due to ' + status);
+			}
+		});
+	}
+
+	//Call the function to initialize the map and directions
+	initMap ();
+	//Call the function to get the user's location
+	// getLocation ();
 }
 
+  
+//Function to find location and display map of the local area
+// function getLocation() {
+// 	navigator.geolocation.getCurrentPosition(showPosition);
+// }
+// function showPosition(position) {
+// 	latlong = position.coords.latitude + "," + position.coords.longitude;
+
+// 	var url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latlong + "&zoom=14&size=400x300&sensor=false&key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8";
+
+// 	$("#map").html("<img src='" + url + "'>");
+// 	$("#map").prepend(url);
+// 	// alert(latlong);
+// }
+// getLocation();
+
+
+
+//User can add a restaurant to their favorites list
+// $(document).on("click", "#favorite", function() {
+// 	alert("Click works");
+
+
+})
