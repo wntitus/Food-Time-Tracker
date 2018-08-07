@@ -20,9 +20,9 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 
   <!-- JAVASCRIPT --> 
-  <script src="assets/javascript/app.js"></script>
-  <script src="assets/javascript/directions.js"></script>
+  <!-- <script src="assets/javascript/directions.js"></script> -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&callback=initMap"></script>
+  <script src="assets/javascript/app.js"></script>
 
   <!-- FIREBASE -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
@@ -58,7 +58,7 @@
   <div class="container">
     <div class="mapAndDirections" style="height:400px; width:100%">
       <div class="row">
-        <span id="map" class="col s12 m6" style="height:400px; float:left"></span>
+        <span id="map" class="col s12 m6" style="height:400px; float:left; "></span>
         <span id="directions" class="col s12 m6" style="height:400px;float:right"></span>
       </div>
     </div>
@@ -102,7 +102,7 @@
  -->
 
   <!-- FOOTER -->
-  <footer class="page-footer">
+  <footer class="page-footer" style="position:fixed; bottom:0; width:100%">
       <div class="row">
         <div class="copyright col s12 center-align hide-on-med-and-down">©Food Rangers</div>
       </div>
