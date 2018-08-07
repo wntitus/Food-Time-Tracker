@@ -22,7 +22,7 @@ let longitude = position.coords.longitude;
 const proxy = "https://cors-anywhere.herokuapp.com/"; 
 const placeURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location=" + latitude + "," + longitude + "&radius=8000&keyword=quick,food,takeaway";
 
-
+}
 
 //Test pushing objects and sorting
 var places = {
@@ -434,4 +434,4 @@ function showPosition(position) {
 // 	alert("Click works");
 
 
-})};
+});
