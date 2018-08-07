@@ -128,7 +128,7 @@ function userLocation(position) {
 						picDiv.addClass("col s12 m4");
 						picDiv.attr("id", "restaurant_img");
 						picDiv.attr("sytle", "padding:0px;");
-						picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+						picDiv.html("<img class='responsive-img' src='" + response.image + "'>");
 						
 						//Append picture to the card
 						picDiv.append(picDiv);
@@ -162,6 +162,8 @@ function userLocation(position) {
 						//'Lets Go' button
 						var goDiv = $("<div>");
 						goDiv.addClass("col s3 m3 right-align");
+						goDiv.attr("id", "goBtn")
+						goDiv.attr("value", output.address);
 						var goImage = $("<a>");
 						goImage.addClass("waves-effect waves-light btn");
 						goImage.text("Go");
@@ -172,10 +174,10 @@ function userLocation(position) {
 						rowTwo.addClass("row");
 						var typeDiv = $("<div>");
 						typeDiv.addClass("col s12");
-						typeDiv.html("<h6>Type of Food: </h6>");
+						typeDiv.html("<h6>Type of Food:" + output.type +  "</h6>");
 						var addressDiv = $("<div>");
 						addressDiv.addClass("col s12");
-						addressDiv.html("<h6>Address: </h6><hr>");
+						addressDiv.html("<h6>Address: " + output.address + "</h6><hr>");
 
 
 						//Append food type and address to the row
@@ -190,7 +192,7 @@ function userLocation(position) {
 						var distDiv = $("<div>");
 						distDiv.addClass("col s4 m2 center-align");
 						distDiv.attr("id", "distance")
-						distDiv.text("Distance: ");
+						distDiv.text("Distance: " + output.distance);
 						//Commute time to restaurant
 						var commuteDiv = $("<div>");
 						commuteDiv.addClass("col s4 m2 center-align");
@@ -200,7 +202,7 @@ function userLocation(position) {
 						var totalDiv = $("<div>");
 						totalDiv.addClass("col s4 m2 center-align");
 						totalDiv.attr("id", "total_time");
-						totalDiv.text("Total Time: " );
+						totalDiv.text("Total Time: " + placesTimeSpent[output.name]);
 
 						//Append distance, commute time, total est time, and directions button to the thrird row
 						rowThree.append(distDiv);
