@@ -1,4 +1,6 @@
+$(document).ready(function(){
 
+// })
 // loads the geolocation method for the userLocation callback function
 navigator.geolocation.getCurrentPosition(userLocation) 
 
@@ -87,6 +89,7 @@ function userLocation(position) {
 					let namesArr = Object.keys(placesTravelTime);
 					//Make an array to hold the total time
 					var totalTimeArr = [];
+					console.log(namesArr.length);
 					for(i = 0; i < namesArr.length; i++) {
 						console.log(i);
 						var restName = namesArr[i];
@@ -102,12 +105,15 @@ function userLocation(position) {
 						//Push the total time into an array so that the index will be aligned with the names array
 						totalTimeArr.push(totalTime);
 						console.log(totalTime);
+						
 					}
+					//Function call with display5ToPage();
 					console.log(totalTimeArr);
 
 					var topFive = [];
-					$(document).ready(function() {
-					//Find the fastest time and store it in an array with the restaurant name next to it.
+
+					let fiveGen = function() {
+											//Find the fastest time and store it in an array with the restaurant name next to it.
 					//We want to do this 5 times and after each time remove the fastest
 					for (j = 0; j < 5; j++) {
 						//Find the fastest restaurant time
@@ -254,6 +260,7 @@ function userLocation(position) {
 						console.log(totalTimeArr);
 
 					}
+					}
 
 					// ========= Dyn Gen End =========//
 
@@ -347,7 +354,7 @@ function userLocation(position) {
 					});
 
 
-					})
+					
 				})
             }    
         }
@@ -357,4 +364,5 @@ function userLocation(position) {
 
 
 }
+})
 
