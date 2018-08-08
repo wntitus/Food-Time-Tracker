@@ -30,6 +30,7 @@ $(document).ready(function(){
 
 
 
+
 //nesting everything inside userLocation function so we can utilize the lat and long of the user
 function userLocation(position) {
 
@@ -186,15 +187,16 @@ function userLocation(position) {
 								//A single row that contains all of card information (The one row to rule them all)
 								var rowAll = $("<div>");
 								rowAll.addClass("row");
-								//Restaurant image
-								var rowPic = $("<div>");
-								var picDiv = $("<div>");
-								picDiv.addClass("col s12 m4");
-								picDiv.attr("id", "restaurant_img");
-								picDiv.attr("sytle", "padding:0px;");
-								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
-								//Append picture to the card
-								picDiv.append(picDiv);
+                //Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
 								//Column of inputs (Restaurant name, cusine, times, etc...)
 								var rightCol = $("<div>");
 								rightCol.addClass("col s12 m8 rightCol");
@@ -271,15 +273,16 @@ function userLocation(position) {
 								//A single row that contains all of card information (The one row to rule them all)
 								var rowAll = $("<div>");
 								rowAll.addClass("row");
-								//Restaurant image
-								var rowPic = $("<div>");
-								var picDiv = $("<div>");
-								picDiv.addClass("col s12 m4");
-								picDiv.attr("id", "restaurant_img");
-								picDiv.attr("sytle", "padding:0px;");
-								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
-								//Append picture to the card
-								picDiv.append(picDiv);
+                //Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
 								//Column of inputs (Restaurant name, cusine, times, etc...)
 								var rightCol = $("<div>");
 								rightCol.addClass("col s12 m8 rightCol");
@@ -357,14 +360,16 @@ function userLocation(position) {
 								var rowAll = $("<div>");
 								rowAll.addClass("row");
 								//Restaurant image
-								var rowPic = $("<div>");
-								var picDiv = $("<div>");
-								picDiv.addClass("col s12 m4");
-								picDiv.attr("id", "restaurant_img");
-								picDiv.attr("sytle", "padding:0px;");
-								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
-								//Append picture to the card
-								picDiv.append(picDiv);
+                //Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
 								//Column of inputs (Restaurant name, cusine, times, etc...)
 								var rightCol = $("<div>");
 								rightCol.addClass("col s12 m8 rightCol");
@@ -441,15 +446,16 @@ function userLocation(position) {
 								//A single row that contains all of card information (The one row to rule them all)
 								var rowAll = $("<div>");
 								rowAll.addClass("row");
-								//Restaurant image
-								var rowPic = $("<div>");
-								var picDiv = $("<div>");
-								picDiv.addClass("col s12 m4");
-								picDiv.attr("id", "restaurant_img");
-								picDiv.attr("sytle", "padding:0px;");
-								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
-								//Append picture to the card
-								picDiv.append(picDiv);
+									//Restaurant image
+                  var rowPic = $("<div>");
+                  var picDiv = $("<div>");
+                  picDiv.addClass("col s12 m4");
+                  picDiv.attr("id", "restaurant_img");
+                  picDiv.attr("sytle", "padding:0px;");
+                  picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                  //Append picture to the card
+                  picDiv.append(picDiv);
 								//Column of inputs (Restaurant name, cusine, times, etc...)
 								var rightCol = $("<div>");
 								rightCol.addClass("col s12 m8 rightCol");
@@ -526,15 +532,16 @@ function userLocation(position) {
 								//A single row that contains all of card information (The one row to rule them all)
 								var rowAll = $("<div>");
 								rowAll.addClass("row");
-								//Restaurant image
-								var rowPic = $("<div>");
-								var picDiv = $("<div>");
-								picDiv.addClass("col s12 m4");
-								picDiv.attr("id", "restaurant_img");
-								picDiv.attr("sytle", "padding:0px;");
-								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
-								//Append picture to the card
-								picDiv.append(picDiv);
+									//Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
 								//Column of inputs (Restaurant name, cusine, times, etc...)
 								var rightCol = $("<div>");
 								rightCol.addClass("col s12 m8 rightCol");
