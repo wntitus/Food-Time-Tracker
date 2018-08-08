@@ -5,6 +5,26 @@ $(document).ready(function(){
 navigator.geolocation.getCurrentPosition(userLocation) 
 
 
+document.addEventListener("DOMContentLoaded", function(){
+	$('.preloader-background').delay(1700).fadeOut('slow');
+	
+	$('.preloader-wrapper')
+	.delay(1700)
+	.fadeOut();
+});
+
+// ========= Navbar Animation =========//
+document.addEventListener('DOMContentLoaded', function() {
+	var elems = document.querySelectorAll('.sidenav');
+	var instances = M.Sidenav.init(elems, options);
+});
+
+$(document).ready(function(){
+	$('.sidenav').sidenav();
+});
+// ========= Navebar End ========//
+
+
 
 
 
@@ -155,14 +175,439 @@ function userLocation(position) {
 								}
 								console.log(placesTimeSpent);
 							}).done(function(){
-
+								let namesArr = Object.keys(placesTravelTime);
+								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+								//Restaurant image
+								var rowPic = $("<div>");
+								var picDiv = $("<div>");
+								picDiv.addClass("col s12 m4");
+								picDiv.attr("id", "restaurant_img");
+								picDiv.attr("sytle", "padding:0px;");
+								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+								//Append picture to the card
+								picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[0] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputOne.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputOne.name]);
+								//Total time to and in restaurant
+								let totalTime = placesTravelTime[outputOne.name] + placesTimeSpent[outputOne.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: ");
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+								//Restaurant image
+								var rowPic = $("<div>");
+								var picDiv = $("<div>");
+								picDiv.addClass("col s12 m4");
+								picDiv.attr("id", "restaurant_img");
+								picDiv.attr("sytle", "padding:0px;");
+								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+								//Append picture to the card
+								picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[1] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputTwo.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputTwo.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputTwo.name] + placesTimeSpent[outputTwo.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: ");
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+								//Restaurant image
+								var rowPic = $("<div>");
+								var picDiv = $("<div>");
+								picDiv.addClass("col s12 m4");
+								picDiv.attr("id", "restaurant_img");
+								picDiv.attr("sytle", "padding:0px;");
+								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+								//Append picture to the card
+								picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[2] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputThree.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputThree.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputThree.name] + placesTimeSpent[outputThree.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: ");
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+								//Restaurant image
+								var rowPic = $("<div>");
+								var picDiv = $("<div>");
+								picDiv.addClass("col s12 m4");
+								picDiv.attr("id", "restaurant_img");
+								picDiv.attr("sytle", "padding:0px;");
+								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+								//Append picture to the card
+								picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[3] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputFour.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputFour.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputFour.name] + placesTimeSpent[outputFour.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: " + totalTime);
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+								//Restaurant image
+								var rowPic = $("<div>");
+								var picDiv = $("<div>");
+								picDiv.addClass("col s12 m4");
+								picDiv.attr("id", "restaurant_img");
+								picDiv.attr("sytle", "padding:0px;");
+								picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+								//Append picture to the card
+								picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[4] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputFive.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputFive.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputFive.name] + placesTimeSpent[outputFive.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: " + totalTime);
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
 							})
 						})
 					})
 				})
 			})
 
-
+			
 			
 		
 		
