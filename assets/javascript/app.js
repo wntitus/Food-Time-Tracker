@@ -341,7 +341,7 @@ var ss=document.getElementsByClassName('stopwatch');
 
 		
 	});
-	// logic for timer finished
+
 	
 });
 
