@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	.fadeOut();
 });
 
+
 // ========= Navbar Animation =========//
 document.addEventListener('DOMContentLoaded', function() {
 	var elems = document.querySelectorAll('.sidenav');
@@ -31,6 +32,7 @@ $(document).ready(function(){
 
 //nesting everything inside userLocation function so we can utilize the lat and long of the user
 function userLocation(position) {
+
 
 	let latitude = position.coords.latitude;
 	let longitude = position.coords.longitude;
@@ -614,6 +616,7 @@ function userLocation(position) {
 		
 		
 
+
 	})
 
 
@@ -625,6 +628,235 @@ function userLocation(position) {
 
 
 
+
+
+
+// class var for stopwatch
+var ss=document.getElementsByClassName('stopwatch');
+// function for when variables are called
+[].forEach.call(ss, function (s){
+	var currentTimer=0;
+		interval=0;
+		lastupdatetime=new Date().getTime(),
+		start= s.querySelector('button.start');
+		stop= s.querySelector('button.stop');
+		reset= s.querySelector('button.reset');
+		save= s.querySelector('button.save')
+		mins= s.querySelector('span.minutes');
+		secs=s.querySelector('span.seconds');
+		cents=s.querySelector('span.centiseconds');
+
+	start.addEventListener('click',startTimer);
+	stop.addEventListener('click',stopTimer);
+	reset.addEventListener('click',resetTimer);
+	
+	
+	function pad (n){
+		return('00' + n).substr(-2);
+	}
+	//function that updates the innerHTML to the current time
+	function update(){
+		var now = new Date().getTime(),
+			dt= now - lastupdatetime;
+
+		currentTimer += dt;
+
+		var time = new Date(currentTimer);
+
+		mins.innerHTML=pad(time.getMinutes());
+		secs.innerHTML=pad(time.getSeconds());
+		cents.innerHTML=pad(Math.floor(time.getMilliseconds()/ 10));
+
+		lastupdatetime=now;
+	}
+	// functions that start and stop timer
+	function startTimer () {
+		if (!interval) {
+			lastupdatetime= new Date().getTime();
+			interval=setInterval(update,1);
+		}
+		
+	};
+	function stopTimer(){
+		clearInterval(interval);
+		interval=0;
+
+	}
+	function resetTimer(){
+		stopTimer();
+
+		currentTimer=0;
+
+		mins.innerHTML=secs.innerHTML=cents.innerHTML=pad(0);
+	}
+	var lap= document.getElementById('lap');
+	var laps=document.getElementById('laps');
+	
+	lap.onclick=function(){
+		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+	}
+	$(document).ready(function(){
+		$("#Arrived").hide();
+		$("#Ordered").hide();
+		$("#Pickedup").hide();
+		$("#Startingmeal").hide();
+		$("#Finishedmeal").hide();
+		$("#Onrouteback").hide();
+		$("#Arrived2").hide();
+		$("#lap").click(function(){
+			$("#lap").hide();
+			$("#Arrived").show();
+		});
+		$("#Arrived").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Arrived").hide();
+			$("#Ordered").show();
+		});
+		$("#Ordered").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Ordered").hide();
+			$("#Pickedup").show();
+		});
+		$("#Pickedup").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Pickedup").hide();
+			$("#Startingmeal").show();
+		});
+		$("#Startingmeal").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Startingmeal").hide();
+			$("#Finishedmeal").show();
+		});
+		$("#Finishedmeal").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Finishedmeal").hide();
+			$("#Onrouteback").show();
+		});
+		$("#Onrouteback").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+			$("#Onrouteback").hide();
+			$("#Arrived2").show();
+		});
+		$("#Arrived2").click(function(){
+			laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
+		});
+
+		
+	});
+
+	// modal below
+
+	var modal=document.getElementById('#lapmodal');
+	var btn=document.getElementById('#Arrived2');
+	var span =document.getElementsByClassName("close")[0];
+
+	btn.onclick=function(){
+		modal.style.display="block";
+	}
+	span.onclick=function(){
+		modal.style.display="none";
+	}
+	window.onclick=function(event){
+		if(event.target == modal){
+			modal.style.display="none";
+		}
+	}
+
+});
+
+//========= function for Go button ======
+//Variable to hold the value of the Go button
+var chosenRestaurant;
+
+//set chosen restaurant to be equal to the value of the go button that is pressed
+$(document).on("click", "#letsGo", function() {
+	chosenRestaurant = $(this).attr("value");
+	console.log(chosenRestaurant);
+})
+
+//JS for the map and directions
+//Global variables
+var userLatLong;
+var lat;
+var long;
+var restaurantLocal = "mcdonalds"
+
+//Function to find user location
+function getLocation() {
+	navigator.geolocation.getCurrentPosition(showPosition);
+};
+getLocation();
+//Store the user location
+function showPosition(position) {
+	userLatLong = position.coords.latitude + ", " + position.coords.longitude;
+	lat = position.coords.latitude;
+	long = position.coords.longitude;
+	// console.log(userLatLong);
+	console.log("lat: " + lat + " and Long: " + long);
+
+	//Initialize the map on the directions page
+	function initMap() {
+		var directionsDisplay = new google.maps.DirectionsRenderer();
+		var directionsService = new google.maps.DirectionsService();
+
+		var userLocal = new google.maps.LatLng(lat, long);
+		var mapOptions = {
+		  zoom:15,
+		  center: userLocal
+		}
+		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('directions'));
+
+		calcRoute(directionsService, directionsDisplay); 
+	}
+
+	//Calculate the route from the user to the restaurant
+	function calcRoute(directionsService, directionsDisplay) {
+		var start = new google.maps.LatLng(lat, long);
+		var end = chosenRestaurant;
+		directionsService.route({
+			origin: start,
+			destination: end,
+			travelMode: 'DRIVING'
+		  }, function(response, status) {
+			if (status === 'OK') {
+			  directionsDisplay.setDirections(response);
+			} else {
+			  window.alert('Directions request failed due to ' + status);
+			}
+		});
+	}
+
+	//Call the function to initialize the map and directions
+	initMap ();
+	//Call the function to get the user's location
+	// getLocation ();
+
 }
 })
 
+  
+//Function to find location and display map of the local area
+// function getLocation() {
+// 	navigator.geolocation.getCurrentPosition(showPosition);
+// }
+// function showPosition(position) {
+// 	latlong = position.coords.latitude + "," + position.coords.longitude;
+
+// 	var url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latlong + "&zoom=14&size=400x300&sensor=false&key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8";
+
+// 	$("#map").html("<img src='" + url + "'>");
+// 	$("#map").prepend(url);
+// 	// alert(latlong);
+// }
+// getLocation();
+
+
+
+//User can add a restaurant to their favorites list
+// $(document).on("click", "#favorite", function() {
+// 	alert("Click works");
+
+
+});

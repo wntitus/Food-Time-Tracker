@@ -119,18 +119,26 @@
       <div class"col sm12 center-align" id="timer">00:00:00</div>
     </div>
 
- <div class="stopwatch">
-    <div class="controls">
-      <button class="start">Start</button>
-      <button class="stop">Stop</button>
-      <button class="reset">Reset</button>
-      <button id="lap">On Route!</button>
+    <div class="stopwatch">
+      <div class="controls">
+        <button class="start">Start</button>
+        <button class="stop">Stop</button>
+        <button class="reset">Reset</button>
+        <button type="button" id="lap">On Route!</button>
+        <button type="button" id="Arrived">Arrived!</button>
+        <button type="button" id="Ordered">Order Placed!</button>
+        <button type="button" id="Pickedup">Order Recieved!</button>
+        <button type="button" id="Startingmeal">Starting Meal!</button>
+        <button type="button" id="Finishedmeal">Finished Meal!</button>
+        <button type="button" id="Onrouteback">Commute Back!</button>
+        <button type="button" id="Arrived2">Arrived!</button>
+      </div>
+      <div class="display">
+        <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
+      </div>
+      <ul id="laps"></ul>
     </div>
-    <div class="display">
-      <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
-    </div>
-    <ul id="laps"></ul>
-  </div>
+    <script src="assets/javascript/app.js"></script>
 
 
   </div>
