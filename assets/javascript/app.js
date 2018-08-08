@@ -770,9 +770,15 @@ var chosenRestaurant;
 
 //set chosen restaurant to be equal to the value of the go button that is pressed
 $(document).on("click", "#letsGo", function() {
+	//Store the value to the chosenRestaurant variable
 	chosenRestaurant = $(this).attr("value");
 	console.log(chosenRestaurant);
-})
+
+	//Store the chosen restaurant on Firebase to use on another page
+	database.set(chosenRestaurant);
+
+	window.location.href = "favorites.html";
+});
 
 //JS for the map and directions
 //Global variables
@@ -780,6 +786,15 @@ var userLatLong;
 var lat;
 var long;
 var restaurantLocal = "mcdonalds"
+var end;
+
+//Take the restaurant from Firebase and store it to be used in the map
+$(document).ready(function() {
+	database.ref().on("child_added", function(childSnapshot) {
+	end = childSnapshot.val();
+	console.log(end);
+	});
+});
 
 //Function to find user location
 function getLocation() {
