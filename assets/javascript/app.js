@@ -24,6 +24,9 @@ const placeURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?k
 
 }
 
+//======global variable to carry over from index to favorites
+var chosenRestaurant;
+
 //Test pushing objects and sorting
 var places = {
 	mcdonalds: 15,
@@ -143,6 +146,7 @@ $(document).ready(function(){
 	goImage.addClass("waves-effect waves-light btn");
 	goImage.attr("id", "letsGo")
 	goImage.attr("value", namesArr[fastestIndex]);
+	goImage.attr("href", "favorites.html");
 	goImage.text("Go");
 	
 	//Row one is appending the Restaurant name and Go button
@@ -336,7 +340,7 @@ var ss=document.getElementsByClassName('stopwatch');
 
 //========= function for Go button ======
 //Variable to hold the value of the Go button
-var chosenRestaurant;
+// var chosenRestaurant;
 
 //set chosen restaurant to be equal to the value of the go button that is pressed
 $(document).on("click", "#letsGo", function() {
@@ -383,8 +387,10 @@ function showPosition(position) {
 
 	//Calculate the route from the user to the restaurant
 	function calcRoute(directionsService, directionsDisplay) {
+		console.log(chosenRestaurant);
 		var start = new google.maps.LatLng(lat, long);
 		var end = chosenRestaurant;
+		console.log(end);
 		directionsService.route({
 			origin: start,
 			destination: end,
