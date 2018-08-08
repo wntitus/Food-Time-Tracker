@@ -281,7 +281,7 @@ var ss=document.getElementsByClassName('stopwatch');
 	var lap= document.getElementById('lap');
 	var laps=document.getElementById('laps');
 	
- HEAD
+ 
 	//lap.onclick displays time
 
 
