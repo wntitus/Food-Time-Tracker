@@ -118,7 +118,7 @@ $(document).ready(function(){
 	picDiv.addClass("col s12 m4");
 	picDiv.attr("id", "restaurant_img");
 	picDiv.attr("sytle", "padding:0px;");
-	picDiv.html("<img class='responsive-img' src='https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80'>");
+	picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
 	
 	//Append picture to the card
 	picDiv.append(picDiv);
