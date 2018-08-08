@@ -141,6 +141,8 @@ $(document).ready(function(){
 	goDiv.addClass("col s3 m3 right-align");
 	var goImage = $("<a>");
 	goImage.addClass("waves-effect waves-light btn");
+	goImage.attr("id", "letsGo")
+	goImage.attr("value", namesArr[fastestIndex]);
 	goImage.text("Go");
 	
 	//Row one is appending the Restaurant name and Go button
@@ -337,7 +339,10 @@ var ss=document.getElementsByClassName('stopwatch');
 var chosenRestaurant;
 
 //set chosen restaurant to be equal to the value of the go button that is pressed
-$(document).on("click", "goBtn")
+$(document).on("click", "#letsGo", function() {
+	chosenRestaurant = $(this).attr("value");
+	console.log(chosenRestaurant);
+})
 
 //JS for the map and directions
 //Global variables
