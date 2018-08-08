@@ -7,7 +7,10 @@ var config = {
     storageBucket: "foodranger-ce610.appspot.com",
     messagingSenderId: "472127333488"
   };
+
   firebase.initializeApp(config);
+
+  var database = firebase.database().ref();
 
 
 // loads the geolocation method for the userLocation callback function
@@ -157,7 +160,7 @@ $(document).ready(function(){
 	goImage.addClass("waves-effect waves-light btn");
 	goImage.attr("id", "letsGo")
 	goImage.attr("value", namesArr[fastestIndex]);
-	goImage.attr("href", "favorites.html");
+	// goImage.attr("href", "favorites.html");
 	goImage.text("Go");
 	
 	//Row one is appending the Restaurant name and Go button
@@ -359,11 +362,10 @@ $(document).on("click", "#letsGo", function() {
 	chosenRestaurant = $(this).attr("value");
 	console.log(chosenRestaurant);
 
-	//Store the chosen restaurant on firebase to use on another page
-	database.ref().set({ 
-		location: chosenRestaurant
-	});
+	//Store the chosen restaurant on Firebase to use on another page
+	database.set(chosenRestaurant);
 
+	window.location.href = "favorites.html";
 });
 
 //JS for the map and directions
@@ -372,6 +374,15 @@ var userLatLong;
 var lat;
 var long;
 var restaurantLocal = "mcdonalds"
+var end;
+
+//Take the restaurant from Firebase and store it to be used in the map
+$(document).ready(function() {
+	database.ref().on("child_added", function(childSnapshot) {
+	end = childSnapshot.val();
+	console.log(end);
+	});
+});
 
 //Function to find user location
 function getLocation() {
@@ -405,9 +416,8 @@ function showPosition(position) {
 
 	//Calculate the route from the user to the restaurant
 	function calcRoute(directionsService, directionsDisplay) {
-		console.log(chosenRestaurant);
+		console.log(end);
 		var start = new google.maps.LatLng(lat, long);
-		var end = chosenRestaurant;
 		console.log(end);
 		directionsService.route({
 			origin: start,
