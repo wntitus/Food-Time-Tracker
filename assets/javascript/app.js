@@ -141,6 +141,8 @@ $(document).ready(function(){
 	goDiv.addClass("col s3 m3 right-align");
 	var goImage = $("<a>");
 	goImage.addClass("waves-effect waves-light btn");
+	goImage.attr("id", "letsGo")
+	goImage.attr("value", namesArr[fastestIndex]);
 	goImage.text("Go");
 	
 	//Row one is appending the Restaurant name and Go button
@@ -350,6 +352,16 @@ var ss=document.getElementsByClassName('stopwatch');
 
 });
 
+//========= function for Go button ======
+//Variable to hold the value of the Go button
+var chosenRestaurant;
+
+//set chosen restaurant to be equal to the value of the go button that is pressed
+$(document).on("click", "#letsGo", function() {
+	chosenRestaurant = $(this).attr("value");
+	console.log(chosenRestaurant);
+})
+
 //JS for the map and directions
 //Global variables
 var userLatLong;
@@ -390,7 +402,7 @@ function showPosition(position) {
 	//Calculate the route from the user to the restaurant
 	function calcRoute(directionsService, directionsDisplay) {
 		var start = new google.maps.LatLng(lat, long);
-		var end = "ucf";
+		var end = chosenRestaurant;
 		directionsService.route({
 			origin: start,
 			destination: end,
