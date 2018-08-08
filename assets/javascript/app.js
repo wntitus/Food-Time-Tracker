@@ -1,3 +1,14 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyA_Trd-05zcJMwzm5Utn20_fMJUrHRrFo4",
+    authDomain: "foodranger-ce610.firebaseapp.com",
+    databaseURL: "https://foodranger-ce610.firebaseio.com",
+    projectId: "foodranger-ce610",
+    storageBucket: "foodranger-ce610.appspot.com",
+    messagingSenderId: "472127333488"
+  };
+  firebase.initializeApp(config);
+
 
 // loads the geolocation method for the userLocation callback function
 navigator.geolocation.getCurrentPosition(userLocation) 
@@ -344,9 +355,16 @@ var ss=document.getElementsByClassName('stopwatch');
 
 //set chosen restaurant to be equal to the value of the go button that is pressed
 $(document).on("click", "#letsGo", function() {
+	//Store the value to the chosenRestaurant variable
 	chosenRestaurant = $(this).attr("value");
 	console.log(chosenRestaurant);
-})
+
+	//Store the chosen restaurant on firebase to use on another page
+	database.ref().set({ 
+		location: chosenRestaurant
+	});
+
+});
 
 //JS for the map and directions
 //Global variables
