@@ -1,7 +1,8 @@
+$(document).ready(function(){
 
+// })
 // loads the geolocation method for the userLocation callback function
 navigator.geolocation.getCurrentPosition(userLocation) 
-
 
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -11,83 +12,6 @@ document.addEventListener("DOMContentLoaded", function(){
 	.delay(1700)
 	.fadeOut();
 });
-
-
-//nesting everything inside userLocation function so we can utilize the lat and long of the user
-function userLocation(position) {
-// setting current lat and long to user position
-let latitude = position.coords.latitude;
-let longitude = position.coords.longitude;
-//setting our cors proxy and our places API url that uses the user lat and long 
-const proxy = "https://cors-anywhere.herokuapp.com/"; 
-const placeURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location=" + latitude + "," + longitude + "&radius=8000&keyword=quick,food,takeaway";
-
-}
-
-//Test pushing objects and sorting
-var places = {
-	mcdonalds: 15,
-	habibi: 20,
-	chipotle: 15,
-	lazymoon: 35,
-	elcerro: 35,
-	burgerfi: 15,
-	tijuanaflats: 20 
-};
-
-var maps = {
-	mcdonalds: 10,
-	habibi: 7,
-	lazymoon: 3,
-	tijuanaflats: 4,
-	burgerfi: 8,
-	elcerro: 3,
-	chipotle: 4
-};
-console.log(places);
-console.log(maps);
-
-//Make an array to hold the restaurant names
-var namesArr = Object.keys(places);
-console.log(namesArr);
-
-//Make an array to hold the total time
-var totalTimeArr = [];
-for(i = 0; i < namesArr.length; i++) {
-	console.log(i);
-	var restName = namesArr[i];
-	console.log(restName);
-	console.log(maps);
-	//Store the drive time to a variable
-	var drive = maps[restName];
-	console.log(drive);
-	//Store the average time people spend in the restaurant in a variable
-	var eatTime = places[restName];
-	//Add the drive time and time spent in restaurant
-	totalTime = drive + eatTime;
-	//Push the total time into an array so that the index will be aligned with the names array
-	totalTimeArr.push(totalTime);
-	console.log(totalTime);
-}
-console.log(totalTimeArr);
-
-var topFive = [];
-$(document).ready(function() {
-//Find the fastest time and store it in an array with the restaurant name next to it.
-//We want to do this 5 times and after each time remove the fastest
-for (j = 0; j < 5; j++) {
-	//Find the fastest restaurant time
-	var fastest = Math.min.apply(Math, totalTimeArr);
-	console.log(fastest);
-	//Use the index of the fastest time to find which restaurant it is
-	var fastestIndex = totalTimeArr.indexOf(fastest);
-	console.log(namesArr[fastestIndex] + " will only take " + totalTimeArr[fastestIndex] + " minutes.");
-	//Push the restaurant and total time to top five array
-	topFive.push(namesArr[fastestIndex]);
-	topFive.push(totalTimeArr[fastestIndex]);
-	console.log(topFive);
-//Find and store the 5 fastest restaurants to an array
-//Find the fastest time 
 
 
 // ========= Navbar Animation =========//
@@ -102,120 +26,617 @@ $(document).ready(function(){
 // ========= Navebar End ========//
 
 
-// ========= Dynamic Restaurant Generation =========== //
-	//Populate the website with the fastest restaurants
-	//Makes a card with the restaurant info
-	var newCard = $("<div>");
-	newCard.addClass("card horizontal");
 
-	//A single row that contains all of card information (The one row to rule them all)
-	var rowAll = $("<div>");
-	rowAll.addClass("row");
 
-	//Restaurant image
-	var rowPic = $("<div>");
-	var picDiv = $("<div>");
-	picDiv.addClass("col s12 m4");
-	picDiv.attr("id", "restaurant_img");
-	picDiv.attr("sytle", "padding:0px;");
-	picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+
+
+//nesting everything inside userLocation function so we can utilize the lat and long of the user
+function userLocation(position) {
+
+
+	let latitude = position.coords.latitude;
+	let longitude = position.coords.longitude;
+
+	let placesTravelTime = {};
+	let placesTimeSpent = {};
+
+	let currentDate = new Date();
+    let hours = currentDate.getHours();
+
+	let proxy = "https://cors-anywhere.herokuapp.com/";
+	let placesURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&location=" + latitude + "," + longitude + "&rankby=distance&keyword=quick,food,takeaway"
+
+	$.ajax({
+		url : proxy + placesURL,
+		method : "GET"
+	}).done(function(response) {
+		console.log(response);
+
+			let outputOne = response.results[0];
+			let outputTwo = response.results[1];
+			let outputThree = response.results[2];
+			let outputFour = response.results[3];
+			let outputFive = response.results[4];
+			let outputOneID = outputOne.place_id;
+			let outputTwoID = outputTwo.place_id;
+			let outputThreeID = outputThree.place_id;
+			let outputFourID = outputFour.place_id;
+			let outputFiveID = outputFive.place_id;
+			let matrixURLONE = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&origins=" + latitude + "," + longitude + "&destinations=place_id:" + outputOneID;
+			let matrixURLTWO = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&origins=" + latitude + "," + longitude + "&destinations=place_id:" + outputTwoID;
+			let matrixURLTHREE = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&origins=" + latitude + "," + longitude + "&destinations=place_id:" + outputThreeID;
+			let matrixURLFOUR = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&origins=" + latitude + "," + longitude + "&destinations=place_id:" + outputFourID;
+			let matrixURLFIVE = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&origins=" + latitude + "," + longitude + "&destinations=place_id:" + outputFiveID;
+			$.ajax({
+				url : proxy + matrixURLONE,
+				method : "GET"
+			}).done(function(resp) {
+				let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
+				placesTravelTime[outputOne.name] = timeInMinutes;
+				console.log(placesTravelTime);
+				if (0 <= hours <= 11) {
+					let earlyTimeSpent = Math.floor(Math.random() * 15) + 9;
+					placesTimeSpent[outputOne.name] = earlyTimeSpent;
+				} else if (12 <= hours <= 14) {
+					let lunchTimeSpent = Math.floor(Math.random() * 20) + 13;
+					placesTimeSpent[outputOne.name] = lunchTimeSpent;
+				} else if (15 <= hours <= 20) {
+					let lateTimeSpent = Math.floor(Math.random() * 17) + 11;
+					placesTimeSpent[outputOne.name] = lateTimeSpent;
+				} else {
+					let otherTimeSpent = Math.floor(Math.random() * 12) + 7;
+					placesTimeSpent[outputOne.name] = otherTimeSpent;
+				}
+				console.log(placesTimeSpent);
+			}).done(function(){
+				$.ajax({
+					url : proxy + matrixURLTWO,
+					method : "GET"
+				}).done(function(resp) {
+					let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
+					placesTravelTime[outputTwo.name] = timeInMinutes;
+					console.log(placesTravelTime);
+					if (0 <= hours <= 11) {
+						let earlyTimeSpent = Math.floor(Math.random() * 15) + 9;
+						placesTimeSpent[outputTwo.name] = earlyTimeSpent;
+					} else if (12 <= hours <= 14) {
+						let lunchTimeSpent = Math.floor(Math.random() * 20) + 13;
+						placesTimeSpent[outputTwo.name] = lunchTimeSpent;
+					} else if (15 <= hours <= 20) {
+						let lateTimeSpent = Math.floor(Math.random() * 17) + 11;
+						placesTimeSpent[outputTwo.name] = lateTimeSpent;
+					} else {
+						let otherTimeSpent = Math.floor(Math.random() * 12) + 7;
+						placesTimeSpent[outputTwo.name] = otherTimeSpent;
+					}
+					console.log(placesTimeSpent);
+				}).done(function(){
+					$.ajax({
+						url : proxy + matrixURLTHREE,
+						method : "GET"
+					}).done(function(resp) {
+						let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
+						placesTravelTime[outputThree.name] = timeInMinutes;
+						console.log(placesTravelTime);
+						if (0 <= hours <= 11) {
+							let earlyTimeSpent = Math.floor(Math.random() * 15) + 9;
+							placesTimeSpent[outputThree.name] = earlyTimeSpent;
+						} else if (12 <= hours <= 14) {
+							let lunchTimeSpent = Math.floor(Math.random() * 20) + 13;
+							placesTimeSpent[outputThree.name] = lunchTimeSpent;
+						} else if (15 <= hours <= 20) {
+							let lateTimeSpent = Math.floor(Math.random() * 17) + 11;
+							placesTimeSpent[outputThree.name] = lateTimeSpent;
+						} else {
+							let otherTimeSpent = Math.floor(Math.random() * 12) + 7;
+							placesTimeSpent[outputThree.name] = otherTimeSpent;
+						}
+						console.log(placesTimeSpent);
+					}).done(function(){
+						$.ajax({
+							url : proxy + matrixURLFOUR,
+							method : "GET"
+						}).done(function(resp) {
+							let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
+							placesTravelTime[outputFour.name] = timeInMinutes;
+							console.log(placesTravelTime);
+							if (0 <= hours <= 11) {
+								let earlyTimeSpent = Math.floor(Math.random() * 15) + 9;
+								placesTimeSpent[outputFour.name] = earlyTimeSpent;
+							} else if (12 <= hours <= 14) {
+								let lunchTimeSpent = Math.floor(Math.random() * 20) + 13;
+								placesTimeSpent[outputFour.name] = lunchTimeSpent;
+							} else if (15 <= hours <= 20) {
+								let lateTimeSpent = Math.floor(Math.random() * 17) + 11;
+								placesTimeSpent[outputFour.name] = lateTimeSpent;
+							} else {
+								let otherTimeSpent = Math.floor(Math.random() * 12) + 7;
+								placesTimeSpent[outputFour.name] = otherTimeSpent;
+							}
+							console.log(placesTimeSpent);
+						}).done(function() {
+							$.ajax({
+								url : proxy + matrixURLFIVE,
+								method : "GET"
+							}).done(function(resp) {
+								let timeInMinutes = Math.round(resp.rows[0].elements[0].duration.value/60);
+								placesTravelTime[outputFive.name] = timeInMinutes;
+								console.log(placesTravelTime);
+								if (0 <= hours <= 11) {
+									let earlyTimeSpent = Math.floor(Math.random() * 15) + 9;
+									placesTimeSpent[outputFive.name] = earlyTimeSpent;
+								} else if (12 <= hours <= 14) {
+									let lunchTimeSpent = Math.floor(Math.random() * 20) + 13;
+									placesTimeSpent[outputFive.name] = lunchTimeSpent;
+								} else if (15 <= hours <= 20) {
+									let lateTimeSpent = Math.floor(Math.random() * 17) + 11;
+									placesTimeSpent[outputFive.name] = lateTimeSpent;
+								} else {
+									let otherTimeSpent = Math.floor(Math.random() * 12) + 7;
+									placesTimeSpent[outputFive.name] = otherTimeSpent;
+								}
+								console.log(placesTimeSpent);
+							}).done(function(){
+								let namesArr = Object.keys(placesTravelTime);
+								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+                //Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[0] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputOne.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputOne.name]);
+								//Total time to and in restaurant
+								let totalTime = placesTravelTime[outputOne.name] + placesTimeSpent[outputOne.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: ");
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+                //Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[1] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputTwo.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputTwo.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputTwo.name] + placesTimeSpent[outputTwo.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: ");
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+								//Restaurant image
+                //Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[2] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputThree.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputThree.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputThree.name] + placesTimeSpent[outputThree.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: ");
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+									//Restaurant image
+                  var rowPic = $("<div>");
+                  var picDiv = $("<div>");
+                  picDiv.addClass("col s12 m4");
+                  picDiv.attr("id", "restaurant_img");
+                  picDiv.attr("sytle", "padding:0px;");
+                  picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                  //Append picture to the card
+                  picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[3] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputFour.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputFour.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputFour.name] + placesTimeSpent[outputFour.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: " + totalTime);
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+																								// ========= Dynamic Restaurant Generation =========== //
+								//Populate the website with the fastest restaurants
+								//Makes a card with the restaurant info
+								var newCard = $("<div>");
+								newCard.addClass("card horizontal");
+								//A single row that contains all of card information (The one row to rule them all)
+								var rowAll = $("<div>");
+								rowAll.addClass("row");
+									//Restaurant image
+                var rowPic = $("<div>");
+                var picDiv = $("<div>");
+                picDiv.addClass("col s12 m4");
+                picDiv.attr("id", "restaurant_img");
+                picDiv.attr("sytle", "padding:0px;");
+                picDiv.html("<img class='responsive-img' src='assets/images/icon_thumb-01.png'>");
+
+                //Append picture to the card
+                picDiv.append(picDiv);
+								//Column of inputs (Restaurant name, cusine, times, etc...)
+								var rightCol = $("<div>");
+								rightCol.addClass("col s12 m8 rightCol");
+									//Row with Restaurant name and favorite icon
+								var rowOne = $("<div>");
+								rowOne.addClass("row");
+								//Restaurant Name
+								var nameDiv = $("<div>");
+								nameDiv.addClass("col s9 m9");
+								nameDiv.html("<h5 id='restaurant-input'>" + namesArr[4] + "</h5>");
+									//'Lets Go' button
+								var goDiv = $("<div>");
+								goDiv.addClass("col s3 m3 right-align");
+								var goImage = $("<a>");
+								goImage.addClass("waves-effect waves-light btn");
+								goImage.attr("id", "letsGo")
+								goImage.attr("value", placesTravelTime[outputFive.name]);
+								goImage.text("Go");
+									//Row one is appending the Restaurant name and Go button
+								rowOne.append(goImage);
+								rowOne.append(nameDiv);
+									//Row that has food type and address
+								var rowTwo = $("<div>");
+								rowTwo.addClass("row");
+								var typeDiv = $("<div>");
+								typeDiv.addClass("col s12");
+								typeDiv.html("<h6>Type of Food: </h6>");
+								var addressDiv = $("<div>");
+								addressDiv.addClass("col s12");
+								addressDiv.html("<h6>Address: </h6><hr>");
+									//Append food type and address to the row
+								rowTwo.append(typeDiv);
+								rowTwo.append(addressDiv);
+									//Row with distance, commute time, total time, and link to directions
+								var rowThree = $("<div>");
+								rowThree.attr("class", "row");
+								//Distance to restaurant
+								var distDiv = $("<div>");
+								distDiv.addClass("col s4 m4 center-align");
+								distDiv.attr("id", "distanc")
+								distDiv.text("Distance: ");
+								//Commute time to restaurant
+								var commuteDiv = $("<div>");
+								commuteDiv.addClass("col s4 m4 center-align");
+								commuteDiv.attr("id", "commute_time");
+								commuteDiv.text("Commute Time: " + placesTravelTime[outputFive.name]);
+								//Total time to and in restaurant
+								totalTime = placesTravelTime[outputFive.name] + placesTimeSpent[outputFive.name];
+								var totalDiv = $("<div>");
+								totalDiv.addClass("col s4 m4 center-align");
+								totalDiv.attr("id", "total_time");
+								totalDiv.text("Total Time: " + totalTime);
+									//Append distance, commute time, total est time, and directions button to the thrird row
+								rowThree.append(distDiv);
+								rowThree.append(commuteDiv);
+								rowThree.append(totalDiv);
+								rowThree.append(goDiv);
+									//Append all of the Restaurant inputs to a column 
+								rightCol.append(rowOne);
+								rightCol.append(rowTwo);
+								rightCol.append(rowThree);
+									//Appending image and input column together to card
+								rowAll.append(picDiv);
+								rowAll.append(rightCol);
+									//Attach the master row to the card
+								newCard.append(rowAll);
+								
+								$("#cards").append(newCard);
+							})
+						})
+					})
+				})
+			})
+
+			
+			
+		
+		
+		
+		
+
+
+	})
+
+
+
+
 	
-	//Append picture to the card
-	picDiv.append(picDiv);
-
-	//Column of inputs (Restaurant name, cusine, times, etc...)
-	var rightCol = $("<div>");
-	rightCol.addClass("col s12 m8 rightCol");
-
-	//Row with Restaurant name and favorite icon
-	var rowOne = $("<div>");
-	rowOne.addClass("row");
-	
-	//Restaurant Name
-	var nameDiv = $("<div>");
-	nameDiv.addClass("col s9 m9");
-	nameDiv.html("<h5 id='restaurant-input'>" + namesArr[fastestIndex] + "</h5>");
-	
-	//'Lets Go' button
-	var goDiv = $("<div>");
-	goDiv.addClass("col s3 m3 right-align");
-	var goImage = $("<a>");
-	goImage.addClass("waves-effect waves-light btn");
-	goImage.text("Go");
-	
-	//Row one is appending the Restaurant name and Go button
-	rowOne.append(goImage);
-	rowOne.append(nameDiv);
-
-	//Row that has food type and address
-	var rowTwo = $("<div>");
-	rowTwo.addClass("row");
-	var typeDiv = $("<div>");
-	typeDiv.addClass("col s12");
-	typeDiv.html("<h6>Type of Food: </h6>");
-	var addressDiv = $("<div>");
-	addressDiv.addClass("col s12");
-	addressDiv.html("<h6>Address: </h6><hr>");
-
-
-	//Append food type and address to the row
-	rowTwo.append(typeDiv);
-	rowTwo.append(addressDiv);
-	
-
-	//Row with distance, commute time, total time, and link to directions
-	var rowThree = $("<div>");
-	rowThree.attr("class", "row");
-	//Distance to restaurant
-	var distDiv = $("<div>");
-	distDiv.addClass("col s4 m4 center-align");
-	distDiv.attr("id", "distanc")
-	distDiv.text("Distance: ");
-	//Commute time to restaurant
-	var commuteDiv = $("<div>");
-	commuteDiv.addClass("col s4 m4 center-align");
-	commuteDiv.attr("id", "commute_time");
-	commuteDiv.text("Commute Time: " + maps[namesArr[fastestIndex]]);
-	//Total time to and in restaurant
-	var totalDiv = $("<div>");
-	totalDiv.addClass("col s4 m4 center-align");
-	totalDiv.attr("id", "total_time");
-	totalDiv.text("Total Time: " + totalTimeArr[fastestIndex]);
-
-	//Append distance, commute time, total est time, and directions button to the thrird row
-	rowThree.append(distDiv);
-	rowThree.append(commuteDiv);
-	rowThree.append(totalDiv);
-	rowThree.append(goDiv);
-
-
-	//Append all of the Restaurant inputs to a column 
-	rightCol.append(rowOne);
-	rightCol.append(rowTwo);
-	rightCol.append(rowThree);
-
-	//Appending image and input column together to card
-	rowAll.append(picDiv);
-	rowAll.append(rightCol);
-
-	//Attach the master row to the card
-	newCard.append(rowAll);
-	
-	$("#cards").append(newCard);
-
-	//Remove the fastest restaurant so it doesn't show up again
-	namesArr.splice(fastestIndex, 1);
-	totalTimeArr.splice(fastestIndex, 1);
-	console.log(namesArr);
-	console.log(totalTimeArr);
-
-}
-
-// ========= Dyn Gen End =========//
 
 
 
-// ========= Logic for Timer =========== //
+
+
+
+
 
 // class var for stopwatch
 var ss=document.getElementsByClassName('stopwatch');
@@ -350,6 +771,16 @@ var ss=document.getElementsByClassName('stopwatch');
 
 });
 
+//========= function for Go button ======
+//Variable to hold the value of the Go button
+var chosenRestaurant;
+
+//set chosen restaurant to be equal to the value of the go button that is pressed
+$(document).on("click", "#letsGo", function() {
+	chosenRestaurant = $(this).attr("value");
+	console.log(chosenRestaurant);
+})
+
 //JS for the map and directions
 //Global variables
 var userLatLong;
@@ -390,7 +821,7 @@ function showPosition(position) {
 	//Calculate the route from the user to the restaurant
 	function calcRoute(directionsService, directionsDisplay) {
 		var start = new google.maps.LatLng(lat, long);
-		var end = "ucf";
+		var end = chosenRestaurant;
 		directionsService.route({
 			origin: start,
 			destination: end,
@@ -408,6 +839,8 @@ function showPosition(position) {
 	initMap ();
 	//Call the function to get the user's location
 	// getLocation ();
+
+}
 }
 
   
