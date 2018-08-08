@@ -834,7 +834,7 @@ function showPosition(position) {
 	// getLocation ();
 
 }
-})
+}
 
   
 //Function to find location and display map of the local area
