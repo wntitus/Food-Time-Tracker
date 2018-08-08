@@ -43,72 +43,50 @@
           <a href="index.html"><img class="responsive-img" src="assets/images/logo2-01.svg" style="height:px;"></a>
         </div></li>
         <li><a href="records.html">Records</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
         <li><a class="sidenav-close" href="#!">Exit Menu</a></li>
       </ul>
       <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
- 
+
   <div class="container">
     <div class="mapAndDirections" style="height:400px; width:100%">
       <div class="row">
-        <span id="map" class="col s12 m6" style="height:400px; float:left; "></span>
-        <span id="directions" class="col s12 m6" style="height:400px;float:right"></span>
-      </div>
-    </div>
-  
-    <!-- Timer -->
-     <div class="stopwatch">
-  <div class="controls">
-    <button class="start">Start</button>
-    <button class="stop">Stop</button>
-    <button class="reset">Reset</button>
-    <button type="button" id="lap">On Route!</button>
-    <button type="button" id="Arrived">Arrived!</button>
-    <button type="button" id="Ordered">Order Placed!</button>
-    <button type="button" id="Pickedup">Order Recieved!</button>
-    <button type="button" id="Startingmeal">Starting Meal!</button>
-    <button type="button" id="Finishedmeal">Finished Meal!</button>
-    <button type="button" id="Onrouteback">Commute Back!</button>
-    <button type="button" id="Arrived2">Arrived!</button>
-  </div>
-  <div class="display">
-    <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
-  </div>
-  <ul id="laps"></ul>
-</div>
-    
-    <!-- Restaurant Card 
-    <div class="card horizontal">
-      <div class="row">
-        <div class="col s12 m4" id="restaurant_img" style="padding:0px;">
-          <img class="responsive-img" src="https://images.unsplash.com/photo-1533323836708-9ed67edee77f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=172d2184a279215fe0aa10181ca012bb&auto=format&fit=crop&w=1700&q=80" >
-        </div>
-        <div class="col s12 m8">
-          <div class="card-content">
+        <!-- Map Col full width --> 
+        <div id="map" class="col s12 m12" style="height:400px; float:left; "></div>
 
-          <div class="row">
-              <div class="row">
-                <div class= "col s7 m8"><h5 id="fav_restaurant-input">Restaurant Name</h5></div>
-                .favorite is the class for the favorite button 
-                 <div class= "col s1 m2 right-align favorite"><i class="small material-icons">favorite_border</i></div>
-                <div class="col s4 m2 right-align"><a class="waves-effect waves-light btn">Bite</a></div>
-
-              </div>
-              <div class ="row">
-                <div class= "col s12"><h6 id="fav_cuisine">Type of Food</h6></div>
-                <div class= "col s12"><h6 id="fav_address">Address</h6></div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col s4 m4 center-align"><div class="info_input" id="fav_distance">5.5 mi</div><div class="descript">Distance</div></div>
-                <div class="col s4 m4 center-align"><div class="info_input" id="fav_commute_time">20 min</div><div class="descript">Commute Time</div></div>
-                <div class="col s4 m4 center-align"><div class="info_input" id="fav_total_time">30 min</div><div class="descript">Total Time</div></div>
-              </div>
+        <!-- Timer Col -->
+        <div class="col s12 m6">
+          <div class="stopwatch">
+            <div class="controls">
+              <button class="start">Start</button>
+              <button class="stop">Stop</button>
+              <button class="reset">Reset</button>
+              <button type="button" id="lap">On Route!</button>
+              <button type="button" id="Arrived">Arrived!</button>
+              <button type="button" id="Ordered">Order Placed!</button>
+              <button type="button" id="Pickedup">Order Recieved!</button>
+              <button type="button" id="Startingmeal">Starting Meal!</button>
+              <button type="button" id="Finishedmeal">Finished Meal!</button>
+              <button type="button" id="Onrouteback">Commute Back!</button>
+              <button type="button" id="Arrived2">Arrived!</button>
             </div>
+            <div class="display">
+              <span class="minutes">00</span><span class="seconds">00</span><span class="centiseconds">00</span>
+            </div>
+            
+            <!-- Modal -->
+            <div id="lapmodal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <ul id="laps"></ul>
+              </div>
+            </div> 
           </div>
+
+          <!-- Directions Col -->
+          <div id="directions" class="col s12 m6"></div>
         </div>
       </div> 
     </div> -->
@@ -118,19 +96,28 @@
     <div class="row">
       <div class="copyright col s12 center-align hide-on-med-and-down">©Food Rangers</div>
     </div>
-  </footer>
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <!-- STICKY FOOTER PUSH -->
+    <main></main>
 
 
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&callback=initMap">
-  </script>
+    <!-- FOOTER -->
+    <footer class="page-footer">
+      <div class="row">
+        <div class="copyright col s12 center-align hide-on-med-and-down">©Food Rangers</div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiP3V7JQ-liMjMuRigFWZCIs3Wc4QR_z8&callback=initMap">
+    </script>
 
 
-</body>
+  </body>
 
-</html>
+  </html>
 
