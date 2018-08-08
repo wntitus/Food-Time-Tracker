@@ -332,6 +332,13 @@ var ss=document.getElementsByClassName('stopwatch');
 	
 });
 
+//========= function for Go button ======
+//Variable to hold the value of the Go button
+var chosenRestaurant;
+
+//set chosen restaurant to be equal to the value of the go button that is pressed
+$(document).on("click", "goBtn")
+
 //JS for the map and directions
 //Global variables
 var userLatLong;
@@ -372,7 +379,7 @@ function showPosition(position) {
 	//Calculate the route from the user to the restaurant
 	function calcRoute(directionsService, directionsDisplay) {
 		var start = new google.maps.LatLng(lat, long);
-		var end = "ucf";
+		var end = chosenRestaurant;
 		directionsService.route({
 			origin: start,
 			destination: end,
