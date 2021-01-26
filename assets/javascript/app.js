@@ -661,7 +661,7 @@ var ss=document.getElementsByClassName('stopwatch');
 	function pad (n){
 		return('00' + n).substr(-2);
 	}
-	//function that updates the innerHTML to the current time
+	//function that updates the to the current time
 	function update(){
 		var now = new Date().getTime(),
 			dt= now - lastupdatetime;
@@ -676,7 +676,7 @@ var ss=document.getElementsByClassName('stopwatch');
 
 		lastupdatetime=now;
 	}
-	// functions that start and stop timer
+	// functions that start, stop and reset timer
 	function startTimer () {
 		if (!interval) {
 			lastupdatetime= new Date().getTime();
@@ -696,13 +696,21 @@ var ss=document.getElementsByClassName('stopwatch');
 
 		mins.innerHTML=secs.innerHTML=cents.innerHTML=pad(0);
 	}
+
+	
+	//var for on route and var for empty div labeled as laps
 	var lap= document.getElementById('lap');
 	var laps=document.getElementById('laps');
 	
+ 
+	//lap.onclick displays time
+
+
 	lap.onclick=function(){
 		laps.innerHTML +="<li>" + mins.innerHTML +":"+ secs.innerHTML +":"+ cents.innerHTML + "</li>";
 	}
 	$(document).ready(function(){
+		//hides all buttons
 		$("#Arrived").hide();
 		$("#Ordered").hide();
 		$("#Pickedup").hide();
@@ -710,6 +718,8 @@ var ss=document.getElementsByClassName('stopwatch');
 		$("#Finishedmeal").hide();
 		$("#Onrouteback").hide();
 		$("#Arrived2").hide();
+
+		//list of functions that display and log time upon being clicked which then displays another button name
 		$("#lap").click(function(){
 			$("#lap").hide();
 			$("#Arrived").show();
@@ -751,24 +761,7 @@ var ss=document.getElementsByClassName('stopwatch');
 		
 	});
 
-	// modal below
-
-	var modal=document.getElementById('#lapmodal');
-	var btn=document.getElementById('#Arrived2');
-	var span =document.getElementsByClassName("close")[0];
-
-	btn.onclick=function(){
-		modal.style.display="block";
-	}
-	span.onclick=function(){
-		modal.style.display="none";
-	}
-	window.onclick=function(event){
-		if(event.target == modal){
-			modal.style.display="none";
-		}
-	}
-
+	
 });
 
 //========= function for Go button ======
